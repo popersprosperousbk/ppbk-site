@@ -77,10 +77,23 @@ export default function Page() {
                 PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.
               </p>
               <div className="mt-8 flex gap-4">
-                <Button size="lg" className="rounded-2xl" asChild><a href="#contact">Free Consultation</a></Button>
+<<<<<<< HEAD
+                <Button size="lg" className="rounded-2xl" asChild><a href="#">Free Consultation</a></Button>
                 <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#pricing">View Pricing</a></Button>
               </div>
               <div className="mt-6 text-sm text-slate-500">QuickBooks</div>
+=======
+  <Button size="lg" className="rounded-2xl" asChild>
+    <a href="#contact" className="flex items-center gap-2">
+      Contact Now <ArrowRight className="h-4 w-4" />
+    </a>
+  </Button>
+  <Button size="lg" variant="outline" className="rounded-2xl" asChild>
+    <a href="#pricing">View Pricing</a>
+  </Button>
+</div>
+              <div className="mt-6 text-sm text-slate-500">QuickBooks </div>
+>>>>>>> 2636ed1 (Contact Now; clickable email/phone; Formspree wired; QuickBooks-only)
             </div>
 
             {/* (Removed the old demo metric cards here to avoid fake numbers in the hero) */}
@@ -201,8 +214,13 @@ export default function Page() {
             <h2 className="text-3xl font-bold text-brandblack">Let’s tidy your books</h2>
             <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
             <div className="mt-6 space-y-3 text-slate-700">
+<<<<<<< HEAD
               <div className="flex items-center gap-3"><Mail className="h-5 w-5" /> popersprosperousbk@gmail.com</div>
               <div className="flex items-center gap-3"><Phone className="h-5 w-5" /> (678) 677-7210</div>
+=======
+              <div className="flex items-center gap-3"><Mail className="h-5 w-5"/> popersprosperousbk@gmail.com</div>
+              <div className="flex items-center gap-3"><Phone className="h-5 w-5"/> (678) 677-7210</div>
+>>>>>>> 2636ed1 (Contact Now; clickable email/phone; Formspree wired; QuickBooks-only)
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
               <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4" /></a>
@@ -215,6 +233,7 @@ export default function Page() {
               <CardDescription>We’ll reply within one business day.</CardDescription>
             </CardHeader>
             <CardContent>
+<<<<<<< HEAD
               <form className="grid grid-cols-1 gap-4" onSubmit={(e) => { e.preventDefault(); alert("Thanks! We will be in touch."); }}>
                 <input className="border rounded-xl p-3" placeholder="Full name" required />
                 <input className="border rounded-xl p-3" placeholder="Email" type="email" required />
@@ -223,6 +242,21 @@ export default function Page() {
                 <Button className="rounded-2xl" type="submit">Send</Button>
                 <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
               </form>
+=======
+              <form
+  action="https://formspree.io/f/xkgvnnww"  // <-- replace with your actual Formspree endpoint
+  method="POST"
+  className="grid grid-cols-1 gap-4"
+>
+  <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
+  <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
+  <input className="border rounded-xl p-3" name="company" placeholder="Company (optional)" />
+  <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
+  <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
+  <Button className="rounded-2xl" type="submit">Send</Button>
+  <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
+</form>
+>>>>>>> 2636ed1 (Contact Now; clickable email/phone; Formspree wired; QuickBooks-only)
             </CardContent>
           </Card>
         </div>
