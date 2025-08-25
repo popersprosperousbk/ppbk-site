@@ -3,93 +3,137 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Check, Calculator, LineChart, ShieldCheck, Clock, Mail, Phone, Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
+  Check, Calculator, LineChart, ShieldCheck, Clock, Mail, Phone,
+  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
+import { Button } from "../components/ui/button";
 
 const features = [
-  { icon: Calculator, title: "Full‑Cycle Bookkeeping", desc: "Monthly close, AR/AP, reconciliations, financial statements, and tidy books you can trust." },
-  { icon: LineChart, title: "CFO‑Level Insights", desc: "Dashboards, KPIs, cash‑flow, and budget vs. actuals so you can make sharp decisions fast." },
-  { icon: ShieldCheck, title: "Cleanups & Catch‑ups", desc: "Behind on months (or years)? We’ll repair chart of accounts and prepare audit‑ready reports." },
-  { icon: Clock, title: "Stress‑Free Payroll", desc: "Accurate, on‑time payroll with filings handled and year‑end forms delivered." },
+  { icon: Calculator, title: "Full-Cycle Bookkeeping", desc: "Monthly close, AR/AP, reconciliations, financial statements, and tidy books you can trust." },
+  { icon: LineChart, title: "CFO-Level Insights", desc: "Dashboards, KPIs, cash-flow, and budget vs. actuals so you can make sharp decisions fast." },
+  { icon: ShieldCheck, title: "Cleanups & Catch-ups", desc: "Behind on months (or years)? We’ll repair chart of accounts and prepare audit-ready reports." },
+  { icon: Clock, title: "Stress-Free Payroll", desc: "Accurate, on-time payroll with filings handled and year-end forms delivered." },
 ];
 
 const industries = [
   { name: "Gyms & Fitness", icon: Building2 },
-  { name: "E‑commerce", icon: Banknote },
+  { name: "E-commerce", icon: Banknote },
   { name: "Contractors", icon: Building2 },
   { name: "Professional Services", icon: FileSpreadsheet },
 ];
 
 const plans = [
   { name: "Starter", price: "$399/mo", tagline: "Solo founders & side hustles", bullets: ["Up to 75 txns/mo", "Monthly P&L & Balance Sheet", "1 bank + 1 credit account", "Email support"] },
-  { name: "Growth", price: "$799/mo", tagline: "Growing teams & multi‑accounts", bullets: ["Up to 300 txns/mo", "Weekly reconciliations", "Up to 4 accounts", "Quarterly review call"], featured: true },
-  { name: "CFO Suite", price: "Custom", tagline: "Advanced reporting & advisory", bullets: ["Unlimited txns", "Cash‑flow & KPI dashboard", "Budgeting & forecasting", "Monthly strategy call"] },
+  { name: "Growth", price: "$799/mo", tagline: "Growing teams & multi-accounts", bullets: ["Up to 300 txns/mo", "Weekly reconciliations", "Up to 4 accounts", "Quarterly review call"], featured: true },
+  { name: "CFO Suite", price: "Custom", tagline: "Advanced reporting & advisory", bullets: ["Unlimited txns", "Cash-flow & KPI dashboard", "Budgeting & forecasting", "Monthly strategy call"] },
 ];
 
 const testimonials = [
-  { quote: "PPBK transformed our books and gave us real‑time visibility. Closing took hours instead of days.", author: "Jamie L.", role: "Owner, Strength Lab Gym" },
+  { quote: "PPBK transformed our books and gave us real-time visibility. Closing took hours instead of days.", author: "Jamie L.", role: "Owner, Strength Lab Gym" },
   { quote: "Their cleanup saved our tax season. The dashboards make decisions obvious.", author: "Ari M.", role: "CEO, Midtown Digital" },
 ];
 
 export default function Page() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
+      {/* NAV */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="PPBK" className="h-9 w-9 rounded-2xl object-cover" />
             <div className="leading-tight">
-              <div className="font-semibold">Poper's Prosperous Bookkeeping</div>
+              <div className="font-semibold">Poper&apos;s Prosperous Bookkeeping</div>
               <div className="text-xs text-slate-500">PPBK</div>
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
             <a href="#services" className="hover:text-slate-600">Services</a>
             <a href="#industries" className="hover:text-slate-600">Industries</a>
+            <a href="#metrics" className="hover:text-slate-600">Results</a>
             <a href="#pricing" className="hover:text-slate-600">Pricing</a>
             <a href="#contact" className="hover:text-slate-600">Contact</a>
           </nav>
           <Button className="rounded-2xl" asChild>
-            <a href="#contact" className="flex items-center gap-2">Get a Quote <ArrowRight className="h-4 w-4"/></a>
+            <a href="#contact" className="flex items-center gap-2">Get a Quote <ArrowRight className="h-4 w-4" /></a>
           </Button>
         </div>
       </header>
 
+      {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="grid lg:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-10 items-center"
+          >
             <div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight"><span className="text-brand">Prosperous</span> books. <span className="text-brandblack">Confident</span> decisions.</h1>
-              <p className="mt-5 text-lg text-slate-600 max-w-xl">PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.</p>
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                <span className="text-brand">Prosperous</span> books. <span className="text-brandblack">Confident</span> decisions.
+              </h1>
+              <p className="mt-5 text-lg text-slate-600 max-w-xl">
+                PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.
+              </p>
               <div className="mt-8 flex gap-4">
                 <Button size="lg" className="rounded-2xl" asChild><a href="#contact">Free Consultation</a></Button>
                 <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#pricing">View Pricing</a></Button>
               </div>
               <div className="mt-6 text-sm text-slate-500">QuickBooks • Xero • Gusto • Stripe • Shopify</div>
             </div>
+
+            {/* (Removed the old demo metric cards here to avoid fake numbers in the hero) */}
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="relative">
               <div className="rounded-3xl border bg-white shadow-sm p-6">
-                <div className="grid grid-cols-3 gap-4">
-                  {["Revenue","COGS","Gross Margin","OpEx","Cash","Runway"].map((m,i)=> (
-                    <Card key={i} className="rounded-2xl">
-                      <CardHeader className="pb-2"><CardTitle className="text-sm">{m}</CardTitle></CardHeader>
-                      <CardContent><div className="text-2xl font-bold">{["$84k","$41k","51%","$22k","$143k","7.8mo"][i]}</div></CardContent>
-                    </Card>
-                  ))}
+                <div className="text-slate-700 leading-relaxed">
+                  <p className="font-medium">Your books, audit-ready.</p>
+                  <ul className="mt-3 list-disc pl-5 text-sm text-slate-600 space-y-1">
+                    <li>Monthly close and reconciliations handled for you</li>
+                    <li>Clean chart of accounts and clear reporting</li>
+                    <li>Seamless tools: QuickBooks / Xero / Gusto / Stripe</li>
+                  </ul>
                 </div>
-                <p className="text-xs text-slate-500 mt-3">Demo metrics for illustration. Your dashboard will reflect real data.</p>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
+      {/* RESULTS / METRICS (illustrative) */}
+      <section id="metrics" className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-brandblack">Results you can expect (approximate)</h2>
+          <p className="text-slate-600 mt-2 max-w-2xl">
+            Illustrative outcomes based on typical client engagements. We’ll tailor specifics to your business.
+          </p>
+
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <h3 className="text-3xl font-bold text-brand">10+ hrs</h3>
+              <p className="text-slate-600">Weekly time saved</p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-brand">3× ROI</h3>
+              <p className="text-slate-600">Average return on fees</p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-brand">100%</h3>
+              <p className="text-slate-600">Monthly reconciliations</p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-brand">$5k+</h3>
+              <p className="text-slate-600">Annual savings on errors</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
       <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-brandblack">Services</h2>
-          <p className="text-slate-600 mt-2 max-w-2xl">Everything you need from day‑to‑day bookkeeping to strategic finance guidance.</p>
+          <p className="text-slate-600 mt-2 max-w-2xl">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
           <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Card key={i} className="rounded-2xl hover:shadow-md transition-shadow">
@@ -106,6 +150,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* INDUSTRIES */}
       <section id="industries" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-brandblack">Who we serve</h2>
@@ -120,6 +165,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* PRICING */}
       <section id="pricing" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-brandblack">Simple pricing</h2>
@@ -148,18 +194,19 @@ export default function Page() {
         </div>
       </section>
 
+      {/* CTA + CONTACT */}
       <section id="contact" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
             <h2 className="text-3xl font-bold text-brandblack">Let’s tidy your books</h2>
             <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
             <div className="mt-6 space-y-3 text-slate-700">
-              <div className="flex items-center gap-3"><Mail className="h-5 w-5"/> hello@ppbk.co</div>
-              <div className="flex items-center gap-3"><Phone className="h-5 w-5"/> (555) 555‑0133</div>
+              <div className="flex items-center gap-3"><Mail className="h-5 w-5" /> hello@ppbk.co</div>
+              <div className="flex items-center gap-3"><Phone className="h-5 w-5" /> (555) 555-0133</div>
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
-              <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4"/></a>
-              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border"><Linkedin className="h-4 w-4"/></a>
+              <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4" /></a>
+              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border"><Linkedin className="h-4 w-4" /></a>
             </div>
           </div>
           <Card className="rounded-2xl">
@@ -168,7 +215,7 @@ export default function Page() {
               <CardDescription>We’ll reply within one business day.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form className="grid grid-cols-1 gap-4" onSubmit={(e)=>{e.preventDefault(); alert('Thanks! We will be in touch.');}}>
+              <form className="grid grid-cols-1 gap-4" onSubmit={(e) => { e.preventDefault(); alert("Thanks! We will be in touch."); }}>
                 <input className="border rounded-xl p-3" placeholder="Full name" required />
                 <input className="border rounded-xl p-3" placeholder="Email" type="email" required />
                 <input className="border rounded-xl p-3" placeholder="Company (optional)" />
@@ -181,6 +228,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-brandblack">What clients say</h2>
@@ -197,12 +245,13 @@ export default function Page() {
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div>© {new Date().getFullYear()} Poper's Prosperous Bookkeeping, LLC</div>
+          <div>© {new Date().getFullYear()} Poper&apos;s Prosperous Bookkeeping, LLC</div>
           <div className="flex gap-6">
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
             <a href="#">Engagement Letter</a>
           </div>
         </div>
@@ -210,3 +259,4 @@ export default function Page() {
     </div>
   );
 }
+
