@@ -201,8 +201,8 @@ export default function Page() {
             <h2 className="text-3xl font-bold text-brandblack">Let’s tidy your books</h2>
             <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
             <div className="mt-6 space-y-3 text-slate-700">
-              <div className="flex items-center gap-3"><Mail className="h-5 w-5" /> hello@ppbk.co</div>
-              <div className="flex items-center gap-3"><Phone className="h-5 w-5" /> (555) 555-0133</div>
+              <div className="flex items-center gap-3"><Mail className="h-5 w-5" /> popersprosperousbk@gmail.com</div>
+              <div className="flex items-center gap-3"><Phone className="h-5 w-5" /> (678) 677-7210</div>
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
               <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4" /></a>
