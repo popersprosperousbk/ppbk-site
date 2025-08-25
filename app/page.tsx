@@ -80,7 +80,7 @@ export default function Page() {
                 <Button size="lg" className="rounded-2xl" asChild><a href="#contact">Free Consultation</a></Button>
                 <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#pricing">View Pricing</a></Button>
               </div>
-              <div className="mt-6 text-sm text-slate-500">QuickBooks • Xero • Gusto • Stripe • Shopify</div>
+              <div className="mt-6 text-sm text-slate-500">QuickBooks</div>
             </div>
 
             {/* (Removed the old demo metric cards here to avoid fake numbers in the hero) */}
@@ -91,7 +91,7 @@ export default function Page() {
                   <ul className="mt-3 list-disc pl-5 text-sm text-slate-600 space-y-1">
                     <li>Monthly close and reconciliations handled for you</li>
                     <li>Clean chart of accounts and clear reporting</li>
-                    <li>Seamless tools: QuickBooks / Xero / Gusto / Stripe</li>
+                    <li>Seamless tools: QuickBooks</li>
                   </ul>
                 </div>
               </div>
