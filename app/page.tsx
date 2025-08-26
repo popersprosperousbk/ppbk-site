@@ -7,7 +7,6 @@ import {
   Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 // ---- Contact constants ----
 const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
@@ -47,21 +46,24 @@ const testimonials = [
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string>("");
 
-  // Deep-link support
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
+  // Preselect from ?plan=... in URL on first client render
   useEffect(() => {
-    const p = searchParams.get("plan");
-    if (p) setSelectedPlan(p);
-  }, [searchParams]);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get("plan");
+      if (p) setSelectedPlan(p);
+    }
+  }, []);
 
+  // Choose a plan: set state, update URL to ?plan=...#contact (no reload)
   const onChoosePlan = (name: string) => {
     setSelectedPlan(name);
-    const params = new URLSearchParams(Array.from(searchParams.entries()));
-    params.set("plan", name);
-    router.replace(`${pathname}?${params.toString()}#contact`);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      params.set("plan", name);
+      const nextUrl = `${window.location.pathname}?${params.toString()}#contact`;
+      window.history.replaceState(null, "", nextUrl);
+    }
   };
 
   return (
