@@ -32,7 +32,7 @@ const plans = [
   { name: "Growth", price: "$799/mo", tagline: "Growing teams & multi-accounts", bullets: ["Up to 300 txns/mo", "Weekly reconciliations", "Up to 4 accounts", "Quarterly review call"], featured: true },
   { name: "CFO Suite", price: "Custom", tagline: "Advanced reporting & advisory", bullets: ["Unlimited txns", "Cash-flow & KPI dashboard", "Budgeting & forecasting", "Monthly strategy call"] },
   // NEW: One Time Charge Cleanup/Reconciliation
-  { name: "One Time Charge", price: "Custom", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
+  { name: "One Time Charge", price: "From $999", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
 ];
 
 const testimonials = [
