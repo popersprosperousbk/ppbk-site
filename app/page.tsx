@@ -31,6 +31,8 @@ const plans = [
   { name: "Starter", price: "$399/mo", tagline: "Solo founders & side hustles", bullets: ["Up to 75 txns/mo", "Monthly P&L & Balance Sheet", "1 bank + 1 credit account", "Email support"] },
   { name: "Growth", price: "$799/mo", tagline: "Growing teams & multi-accounts", bullets: ["Up to 300 txns/mo", "Weekly reconciliations", "Up to 4 accounts", "Quarterly review call"], featured: true },
   { name: "CFO Suite", price: "Custom", tagline: "Advanced reporting & advisory", bullets: ["Unlimited txns", "Cash-flow & KPI dashboard", "Budgeting & forecasting", "Monthly strategy call"] },
+  // NEW: One Time Charge Cleanup/Reconciliation
+  { name: "One Time Charge", price: "Custom", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
 ];
 
 const testimonials = [
@@ -226,7 +228,7 @@ export default function Page() {
                 <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
                 <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
 
-                {/* Updated bubble-style submit */}
+                {/* Bubble-style submit */}
                 <button
                   type="submit"
                   className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-slate-900 text-white font-medium shadow hover:bg-slate-800 transition"
