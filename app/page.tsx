@@ -9,6 +9,11 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 
+// ---- Contact constants ----
+const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
+const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
+const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
+
 const features = [
   { icon: Calculator, title: "Full-Cycle Bookkeeping", desc: "Monthly close, AR/AP, reconciliations, financial statements, and tidy books you can trust." },
   { icon: LineChart, title: "CFO-Level Insights", desc: "Dashboards, KPIs, cash-flow, and budget vs. actuals so you can make sharp decisions fast." },
@@ -77,26 +82,21 @@ export default function Page() {
                 PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.
               </p>
               <div className="mt-8 flex gap-4">
-<<<<<<< HEAD
-                <Button size="lg" className="rounded-2xl" asChild><a href="#">Free Consultation</a></Button>
-                <Button size="lg" variant="outline" className="rounded-2xl" asChild><a href="#pricing">View Pricing</a></Button>
+                {/* Left button: Contact Now */}
+                <Button size="lg" className="rounded-2xl" asChild>
+                  <a href="#contact" className="flex items-center gap-2">
+                    Contact Now <ArrowRight className="h-4 w-4" />
+                  </a>
+                </Button>
+                {/* Right button: View Pricing */}
+                <Button size="lg" variant="outline" className="rounded-2xl" asChild>
+                  <a href="#pricing">View Pricing</a>
+                </Button>
               </div>
               <div className="mt-6 text-sm text-slate-500">QuickBooks</div>
-=======
-  <Button size="lg" className="rounded-2xl" asChild>
-    <a href="#contact" className="flex items-center gap-2">
-      Contact Now <ArrowRight className="h-4 w-4" />
-    </a>
-  </Button>
-  <Button size="lg" variant="outline" className="rounded-2xl" asChild>
-    <a href="#pricing">View Pricing</a>
-  </Button>
-</div>
-              <div className="mt-6 text-sm text-slate-500">QuickBooks </div>
->>>>>>> 2636ed1 (Contact Now; clickable email/phone; Formspree wired; QuickBooks-only)
             </div>
 
-            {/* (Removed the old demo metric cards here to avoid fake numbers in the hero) */}
+            {/* Clean info card */}
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }} className="relative">
               <div className="rounded-3xl border bg-white shadow-sm p-6">
                 <div className="text-slate-700 leading-relaxed">
@@ -146,7 +146,7 @@ export default function Page() {
       <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-brandblack">Services</h2>
-          <p className="text-slate-600 mt-2 max-w-2xl">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
+          <p className="text-slate-600 mt-2">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
           <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Card key={i} className="rounded-2xl hover:shadow-md transition-shadow">
@@ -214,13 +214,14 @@ export default function Page() {
             <h2 className="text-3xl font-bold text-brandblack">Let’s tidy your books</h2>
             <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
             <div className="mt-6 space-y-3 text-slate-700">
-<<<<<<< HEAD
-              <div className="flex items-center gap-3"><Mail className="h-5 w-5" /> popersprosperousbk@gmail.com</div>
-              <div className="flex items-center gap-3"><Phone className="h-5 w-5" /> (678) 677-7210</div>
-=======
-              <div className="flex items-center gap-3"><Mail className="h-5 w-5"/> popersprosperousbk@gmail.com</div>
-              <div className="flex items-center gap-3"><Phone className="h-5 w-5"/> (678) 677-7210</div>
->>>>>>> 2636ed1 (Contact Now; clickable email/phone; Formspree wired; QuickBooks-only)
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline">
+                <Mail className="h-5 w-5" />
+                {CONTACT_EMAIL}
+              </a>
+              <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline">
+                <Phone className="h-5 w-5" />
+                {CONTACT_PHONE_DISPLAY}
+              </a>
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
               <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4" /></a>
@@ -233,30 +234,20 @@ export default function Page() {
               <CardDescription>We’ll reply within one business day.</CardDescription>
             </CardHeader>
             <CardContent>
-<<<<<<< HEAD
-              <form className="grid grid-cols-1 gap-4" onSubmit={(e) => { e.preventDefault(); alert("Thanks! We will be in touch."); }}>
-                <input className="border rounded-xl p-3" placeholder="Full name" required />
-                <input className="border rounded-xl p-3" placeholder="Email" type="email" required />
-                <input className="border rounded-xl p-3" placeholder="Company (optional)" />
-                <textarea className="border rounded-xl p-3 min-h-[120px]" placeholder="What do you need help with?" />
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
+                <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
+                <input className="border rounded-xl p-3" name="company" placeholder="Company (optional)" />
+                <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
+                <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
+                <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
                 <Button className="rounded-2xl" type="submit">Send</Button>
                 <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
               </form>
-=======
-              <form
-  action="https://formspree.io/f/xkgvnnww"  // <-- replace with your actual Formspree endpoint
-  method="POST"
-  className="grid grid-cols-1 gap-4"
->
-  <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
-  <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
-  <input className="border rounded-xl p-3" name="company" placeholder="Company (optional)" />
-  <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
-  <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
-  <Button className="rounded-2xl" type="submit">Send</Button>
-  <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
-</form>
->>>>>>> 2636ed1 (Contact Now; clickable email/phone; Formspree wired; QuickBooks-only)
             </CardContent>
           </Card>
         </div>
@@ -286,11 +277,10 @@ export default function Page() {
           <div className="flex gap-6">
             <a href="/privacy">Privacy</a>
             <a href="/terms">Terms</a>
-            <a href="#">Engagement Letter</a>
+            <a href="#contact">Contact</a>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-
