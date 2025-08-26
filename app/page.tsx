@@ -7,11 +7,11 @@ import {
   Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
-import { Button } from "../components/ui/button";
 
+// ---- Contact constants ----
 const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
 const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
-const CONTACT_PHONE_TEL = "+16786777210";
+const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
 
 const features = [
   { icon: Calculator, title: "Full-Cycle Bookkeeping", desc: "Monthly close, AR/AP, reconciliations, financial statements, and tidy books you can trust." },
@@ -31,7 +31,6 @@ const plans = [
   { name: "Starter", price: "$399/mo", tagline: "Solo founders & side hustles", bullets: ["Up to 75 txns/mo", "Monthly P&L & Balance Sheet", "1 bank + 1 credit account", "Email support"] },
   { name: "Growth", price: "$799/mo", tagline: "Growing teams & multi-accounts", bullets: ["Up to 300 txns/mo", "Weekly reconciliations", "Up to 4 accounts", "Quarterly review call"], featured: true },
   { name: "CFO Suite", price: "Custom", tagline: "Advanced reporting & advisory", bullets: ["Unlimited txns", "Cash-flow & KPI dashboard", "Budgeting & forecasting", "Monthly strategy call"] },
-  // NEW: One Time Charge Cleanup/Reconciliation
   { name: "One Time Charge", price: "From $999", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
 ];
 
@@ -39,6 +38,10 @@ const testimonials = [
   { quote: "PPBK transformed our books and gave us real-time visibility. Closing took hours instead of days.", author: "Jamie L.", role: "Owner, Strength Lab Gym" },
   { quote: "Their cleanup saved our tax season. The dashboards make decisions obvious.", author: "Ari M.", role: "CEO, Midtown Digital" },
 ];
+
+// Reusable royal-blue bubble class
+const bubble =
+  "inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-700 text-white font-medium shadow hover:bg-blue-800 transition";
 
 export default function Page() {
   return (
@@ -53,15 +56,15 @@ export default function Page() {
             className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 rounded-2xl object-cover"
           />
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#services" className="hover:text-slate-600">Services</a>
-            <a href="#industries" className="hover:text-slate-600">Industries</a>
-            <a href="#metrics" className="hover:text-slate-600">Results</a>
-            <a href="#pricing" className="hover:text-slate-600">Pricing</a>
-            <a href="#contact" className="hover:text-slate-600">Contact</a>
+            <a href="#services" className="hover:text-slate-700">Services</a>
+            <a href="#industries" className="hover:text-slate-700">Industries</a>
+            <a href="#metrics" className="hover:text-slate-700">Results</a>
+            <a href="#pricing" className="hover:text-slate-700">Pricing</a>
+            <a href="#contact" className="hover:text-slate-700">Contact</a>
           </nav>
-          <Button className="rounded-2xl" asChild>
-            <a href="#contact" className="flex items-center gap-2">Get a Quote <ArrowRight className="h-4 w-4" /></a>
-          </Button>
+          <a href="#contact" className={bubble}>
+            Get a Quote <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </header>
 
@@ -76,23 +79,21 @@ export default function Page() {
           >
             <div>
               <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                <span className="text-brand">Prosperous</span> books. <span className="text-brandblack">Confident</span> decisions.
+                <span className="text-blue-700">Prosperous</span> books.{" "}
+                <span className="text-slate-900">Confident</span> decisions.
               </h1>
               <p className="mt-5 text-lg text-slate-600 max-w-xl">
                 PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.
               </p>
               <div className="mt-8 flex gap-4">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-slate-900 text-white font-medium shadow hover:bg-slate-800 transition"
-                >
+                <a href="#contact" className={bubble}>
                   Contact Now <ArrowRight className="h-4 w-4" />
                 </a>
-                <Button size="lg" variant="outline" className="rounded-2xl" asChild>
-                  <a href="#pricing">View Pricing</a>
-                </Button>
+                <a href="#pricing" className={`${bubble} bg-white text-blue-700 border border-blue-700 hover:bg-blue-50`}>
+                  View Pricing
+                </a>
               </div>
-              <div className="mt-6 text-sm text-slate-500">QuickBooks</div>
+              <div className="mt-6 text-sm text-blue-700 font-medium">QuickBooks</div>
             </div>
 
             {/* Info card */}
@@ -113,13 +114,25 @@ export default function Page() {
       {/* METRICS */}
       <section id="metrics" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brandblack">Results you can expect (approximate)</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Results you can expect (approximate)</h2>
           <p className="text-slate-600 mt-2 max-w-2xl">Illustrative outcomes based on typical client engagements.</p>
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div><h3 className="text-3xl font-bold text-brand">10+ hrs</h3><p>Weekly time saved</p></div>
-            <div><h3 className="text-3xl font-bold text-brand">3× ROI</h3><p>Average return on fees</p></div>
-            <div><h3 className="text-3xl font-bold text-brand">100%</h3><p>Monthly reconciliations</p></div>
-            <div><h3 className="text-3xl font-bold text-brand">$5k+</h3><p>Annual savings on errors</p></div>
+            <div>
+              <h3 className="text-3xl font-extrabold text-blue-700">10+ hrs</h3>
+              <p>Weekly time saved</p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-extrabold text-blue-700">3× ROI</h3>
+              <p>Average return on fees</p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-extrabold text-blue-700">100%</h3>
+              <p>Monthly reconciliations</p>
+            </div>
+            <div>
+              <h3 className="text-3xl font-extrabold text-blue-700">$5k+</h3>
+              <p>Annual savings on errors</p>
+            </div>
           </div>
         </div>
       </section>
@@ -127,13 +140,13 @@ export default function Page() {
       {/* SERVICES */}
       <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brandblack">Services</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Services</h2>
           <p className="text-slate-600 mt-2">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
           <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Card key={i} className="rounded-2xl hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <div className="h-10 w-10 rounded-xl bg-slate-100 grid place-items-center">
+                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-700 grid place-items-center">
                     <f.icon className="h-5 w-5" />
                   </div>
                   <CardTitle className="mt-3 text-lg">{f.title}</CardTitle>
@@ -148,11 +161,11 @@ export default function Page() {
       {/* INDUSTRIES */}
       <section id="industries" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brandblack">Who we serve</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Who we serve</h2>
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             {industries.map((it, i) => (
               <div key={i} className="rounded-2xl border bg-white p-6 flex items-center gap-3">
-                <it.icon className="h-5 w-5" />
+                <it.icon className="h-5 w-5 text-blue-700" />
                 <span className="font-medium">{it.name}</span>
               </div>
             ))}
@@ -163,25 +176,36 @@ export default function Page() {
       {/* PRICING */}
       <section id="pricing" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brandblack">Simple pricing</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Simple pricing</h2>
           <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
             {plans.map((p, i) => (
-              <Card key={i} className={`rounded-2xl ${p.featured ? "border-slate-900 shadow-lg" : ""}`}>
+              <Card
+                key={i}
+                className={`rounded-2xl ${
+                  p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""
+                }`}
+              >
                 <CardHeader>
                   <CardTitle className="flex items-baseline justify-between">
                     <span>{p.name}</span>
-                    <span className="text-2xl font-extrabold">{p.price}</span>
+                    <span className="text-2xl font-extrabold text-blue-700">{p.price}</span>
                   </CardTitle>
                   <CardDescription>{p.tagline}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
                     {p.bullets.map((b, j) => (
-                      <li key={j} className="flex gap-2 text-sm"><Check className="h-4 w-4 mt-0.5" /> {b}</li>
+                      <li key={j} className="flex gap-2 text-sm">
+                        <Check className="h-4 w-4 mt-0.5 text-blue-700" /> {b}
+                      </li>
                     ))}
                   </ul>
-                  <Button className="w-full mt-6 rounded-2xl" variant={p.featured ? "default" : "outline"}>Choose {p.name}</Button>
+
+                  {/* Uniform royal-blue bubble */}
+                  <a href="#contact" className={`${bubble} w-full justify-center mt-6`}>
+                    Choose {p.name}
+                  </a>
                 </CardContent>
               </Card>
             ))}
@@ -189,25 +213,29 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CONTACT */}
+      {/* CTA + CONTACT */}
       <section id="contact" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
-            <h2 className="text-3xl font-bold text-brandblack">Let’s tidy your books</h2>
+            <h2 className="text-3xl font-bold text-slate-900">Let’s tidy your books</h2>
             <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
             <div className="mt-6 space-y-3 text-slate-700">
               <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline">
-                <Mail className="h-5 w-5" />
+                <Mail className="h-5 w-5 text-blue-700" />
                 {CONTACT_EMAIL}
               </a>
               <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline">
-                <Phone className="h-5 w-5" />
+                <Phone className="h-5 w-5 text-blue-700" />
                 {CONTACT_PHONE_DISPLAY}
               </a>
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
-              <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4" /></a>
-              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border"><Linkedin className="h-4 w-4" /></a>
+              <a href="#" aria-label="Facebook" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition">
+                <Linkedin className="h-4 w-4" />
+              </a>
             </div>
           </div>
           <Card className="rounded-2xl">
@@ -221,18 +249,15 @@ export default function Page() {
                 method="POST"
                 className="grid grid-cols-1 gap-4"
               >
-                <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
-                <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
-                <input className="border rounded-xl p-3" name="company" placeholder="Company (optional)" />
-                <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Full name" required />
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email" type="email" required />
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="company" placeholder="Company (optional)" />
+                <textarea className="border rounded-xl p-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-blue-200" name="message" placeholder="What do you need help with?" />
                 <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
                 <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
 
-                {/* Bubble-style submit */}
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-slate-900 text-white font-medium shadow hover:bg-slate-800 transition"
-                >
+                {/* Bubble-style submit (royal blue) */}
+                <button type="submit" className={bubble}>
                   Send <ArrowRight className="h-4 w-4" />
                 </button>
 
@@ -246,7 +271,7 @@ export default function Page() {
       {/* TESTIMONIALS */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brandblack">What clients say</h2>
+          <h2 className="text-3xl font-bold text-slate-900">What clients say</h2>
           <div className="mt-8 grid md:grid-cols-2 gap-6">
             {testimonials.map((t, i) => (
               <Card key={i} className="rounded-2xl">
@@ -265,9 +290,9 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>© {new Date().getFullYear()} Poper&apos;s Prosperous Bookkeeping</div>
           <div className="flex gap-6">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="#contact">Contact</a>
+            <a href="/privacy" className="hover:text-blue-700">Privacy</a>
+            <a href="/terms" className="hover:text-blue-700">Terms</a>
+            <a href="#contact" className="hover:text-blue-700">Contact</a>
           </div>
         </div>
       </footer>
