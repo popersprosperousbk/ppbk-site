@@ -52,13 +52,11 @@ export default function Page() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Preselect from ?plan=... in URL
   useEffect(() => {
     const p = searchParams.get("plan");
     if (p) setSelectedPlan(p);
   }, [searchParams]);
 
-  // When user chooses a plan, set it and update the URL to ?plan=...#contact
   const onChoosePlan = (name: string) => {
     setSelectedPlan(name);
     const params = new URLSearchParams(Array.from(searchParams.entries()));
@@ -68,16 +66,16 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
-      {/* NAV */}
+      {/* NAV (condensed bar + larger mobile logo) */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 sm:h-32 lg:h-44 flex items-center justify-between">
-          {/* Super-sized logo only */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-3 flex items-center justify-between">
+          {/* Logo: larger on mobile, still big on desktop */}
           <img
             src="/logo.png"
             alt="PPBK Logo"
-            className="h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 rounded-2xl object-cover"
+            className="h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 rounded-2xl object-cover"
           />
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <nav className="hidden md:flex items-center gap-4 text-[0.9rem]">
             <a href="#services" className="hover:text-slate-700">Services</a>
             <a href="#industries" className="hover:text-slate-700">Industries</a>
             <a href="#metrics" className="hover:text-slate-700">Results</a>
@@ -200,7 +198,7 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-slate-900">Simple pricing</h2>
           <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
-        <div className="mt-10 grid md:grid-cols-3 gap-6">
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
             {plans.map((p, i) => (
               <Card
                 key={i}
