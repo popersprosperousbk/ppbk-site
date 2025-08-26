@@ -89,8 +89,8 @@ export default function Page() {
                 <a href="#contact" className={bubble}>
                   Contact Now <ArrowRight className="h-4 w-4" />
                 </a>
-                <a href="#pricing" className={`${bubble} bg-white text-blue-700 border border-blue-700 hover:bg-blue-50`}>
-                  View Pricing
+                <a href="#pricing" className={bubble}>
+                  View Pricing <ArrowRight className="h-4 w-4" />
                 </a>
               </div>
               <div className="mt-6 text-sm text-blue-700 font-medium">QuickBooks</div>
