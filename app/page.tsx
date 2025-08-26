@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Check, Calculator, LineChart, ShieldCheck, Clock, Mail, Phone,
@@ -34,16 +34,29 @@ const plans = [
   { name: "One Time Charge", price: "From $999", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
 ];
 
+// Reusable royal-blue bubble class
+const bubble =
+  "inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-700 text-white font-medium shadow hover:bg-blue-800 transition";
+
 const testimonials = [
   { quote: "PPBK transformed our books and gave us real-time visibility. Closing took hours instead of days.", author: "Jamie L.", role: "Owner, Strength Lab Gym" },
   { quote: "Their cleanup saved our tax season. The dashboards make decisions obvious.", author: "Ari M.", role: "CEO, Midtown Digital" },
 ];
 
-// Reusable royal-blue bubble class
-const bubble =
-  "inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-700 text-white font-medium shadow hover:bg-blue-800 transition";
-
 export default function Page() {
+  const [selectedPlan, setSelectedPlan] = useState<string>("");
+
+  // Optional: allow preselect via ?plan=... in URL
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get("plan");
+      if (p) setSelectedPlan(p);
+    }
+  }, []);
+
+  const onChoosePlan = (name: string) => setSelectedPlan(name);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
       {/* NAV */}
@@ -202,8 +215,12 @@ export default function Page() {
                     ))}
                   </ul>
 
-                  {/* Uniform royal-blue bubble */}
-                  <a href="#contact" className={`${bubble} w-full justify-center mt-6`}>
+                  {/* Choose button sets selected plan and scrolls to contact */}
+                  <a
+                    href="#contact"
+                    onClick={() => onChoosePlan(p.name)}
+                    className={`${bubble} w-full justify-center mt-6`}
+                  >
                     Choose {p.name}
                   </a>
                 </CardContent>
@@ -219,6 +236,8 @@ export default function Page() {
           <div>
             <h2 className="text-3xl font-bold text-slate-900">Let’s tidy your books</h2>
             <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
+
+            {/* Contact info */}
             <div className="mt-6 space-y-3 text-slate-700">
               <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline">
                 <Mail className="h-5 w-5 text-blue-700" />
@@ -238,6 +257,8 @@ export default function Page() {
               </a>
             </div>
           </div>
+
+          {/* Form */}
           <Card className="rounded-2xl">
             <CardHeader>
               <CardTitle>Request a quote</CardTitle>
@@ -249,10 +270,27 @@ export default function Page() {
                 method="POST"
                 className="grid grid-cols-1 gap-4"
               >
+                {/* Selected plan (visible and editable) */}
+                <label className="text-sm font-medium text-slate-700">Plan (optional)</label>
+                <select
+                  name="plan"
+                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  value={selectedPlan}
+                  onChange={(e) => setSelectedPlan(e.target.value)}
+                >
+                  <option value="">Select a plan…</option>
+                  {plans.map((p) => (
+                    <option key={p.name} value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+
                 <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Full name" required />
                 <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email" type="email" required />
                 <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="company" placeholder="Company (optional)" />
                 <textarea className="border rounded-xl p-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-blue-200" name="message" placeholder="What do you need help with?" />
+
                 <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
                 <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
 
