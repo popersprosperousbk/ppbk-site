@@ -225,7 +225,15 @@ export default function Page() {
                 <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
                 <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
                 <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
-                <Button className="rounded-2xl" type="submit">Send</Button>
+
+                {/* Updated bubble-style submit */}
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-slate-900 text-white font-medium shadow hover:bg-slate-800 transition"
+                >
+                  Send <ArrowRight className="h-4 w-4" />
+                </button>
+
                 <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
               </form>
             </CardContent>
