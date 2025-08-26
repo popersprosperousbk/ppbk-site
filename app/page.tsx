@@ -44,13 +44,13 @@ export default function Page() {
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
       {/* NAV */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 lg:h-28 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 lg:h-24 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* Bigger responsive logo */}
+            {/* Responsive larger logo */}
             <img
               src="/logo.png"
               alt="PPBK"
-              className="h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 rounded-2xl object-cover"
+              className="h-14 w-14 sm:h-16 sm:w-16 lg:h-20 lg:w-20 rounded-2xl object-cover"
             />
             <div className="leading-tight">
               {/* Responsive company name */}
@@ -118,8 +118,159 @@ export default function Page() {
         </div>
       </section>
 
-      {/* METRICS, SERVICES, INDUSTRIES, PRICING, CONTACT, TESTIMONIALS, FOOTER */}
-      {/* ... keep as in your last working version ... */}
+      {/* METRICS */}
+      <section id="metrics" className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-brandblack">Results you can expect (approximate)</h2>
+          <p className="text-slate-600 mt-2 max-w-2xl">Illustrative outcomes based on typical client engagements.</p>
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div><h3 className="text-3xl font-bold text-brand">10+ hrs</h3><p>Weekly time saved</p></div>
+            <div><h3 className="text-3xl font-bold text-brand">3× ROI</h3><p>Average return on fees</p></div>
+            <div><h3 className="text-3xl font-bold text-brand">100%</h3><p>Monthly reconciliations</p></div>
+            <div><h3 className="text-3xl font-bold text-brand">$5k+</h3><p>Annual savings on errors</p></div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-brandblack">Services</h2>
+          <p className="text-slate-600 mt-2">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
+          <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((f, i) => (
+              <Card key={i} className="rounded-2xl hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <div className="h-10 w-10 rounded-xl bg-slate-100 grid place-items-center">
+                    <f.icon className="h-5 w-5" />
+                  </div>
+                  <CardTitle className="mt-3 text-lg">{f.title}</CardTitle>
+                  <CardDescription>{f.desc}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INDUSTRIES */}
+      <section id="industries" className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-brandblack">Who we serve</h2>
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {industries.map((it, i) => (
+              <div key={i} className="rounded-2xl border bg-white p-6 flex items-center gap-3">
+                <it.icon className="h-5 w-5" />
+                <span className="font-medium">{it.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRICING */}
+      <section id="pricing" className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-brandblack">Simple pricing</h2>
+          <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
+            {plans.map((p, i) => (
+              <Card key={i} className={`rounded-2xl ${p.featured ? "border-slate-900 shadow-lg" : ""}`}>
+                <CardHeader>
+                  <CardTitle className="flex items-baseline justify-between">
+                    <span>{p.name}</span>
+                    <span className="text-2xl font-extrabold">{p.price}</span>
+                  </CardTitle>
+                  <CardDescription>{p.tagline}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {p.bullets.map((b, j) => (
+                      <li key={j} className="flex gap-2 text-sm"><Check className="h-4 w-4 mt-0.5" /> {b}</li>
+                    ))}
+                  </ul>
+                  <Button className="w-full mt-6 rounded-2xl" variant={p.featured ? "default" : "outline"}>Choose {p.name}</Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA + CONTACT */}
+      <section id="contact" className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-3xl font-bold text-brandblack">Let’s tidy your books</h2>
+            <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
+            <div className="mt-6 space-y-3 text-slate-700">
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline">
+                <Mail className="h-5 w-5" />
+                {CONTACT_EMAIL}
+              </a>
+              <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline">
+                <Phone className="h-5 w-5" />
+                {CONTACT_PHONE_DISPLAY}
+              </a>
+            </div>
+            <div className="mt-6 flex gap-3 text-slate-500">
+              <a href="#" aria-label="Facebook" className="p-2 rounded-full border"><Facebook className="h-4 w-4" /></a>
+              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border"><Linkedin className="h-4 w-4" /></a>
+            </div>
+          </div>
+          <Card className="rounded-2xl">
+            <CardHeader>
+              <CardTitle>Request a quote</CardTitle>
+              <CardDescription>We’ll reply within one business day.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
+                <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
+                <input className="border rounded-xl p-3" name="company" placeholder="Company (optional)" />
+                <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
+                <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
+                <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
+                <Button className="rounded-2xl" type="submit">Send</Button>
+                <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-brandblack">What clients say</h2>
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            {testimonials.map((t, i) => (
+              <Card key={i} className="rounded-2xl">
+                <CardContent className="pt-6">
+                  <p className="text-lg">“{t.quote}”</p>
+                  <p className="mt-4 text-sm text-slate-600">— {t.author}, {t.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>© {new Date().getFullYear()} Poper&apos;s Prosperous Bookkeeping, LLC</div>
+          <div className="flex gap-6">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
