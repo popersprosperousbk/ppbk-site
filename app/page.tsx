@@ -13,6 +13,10 @@ const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
 const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
 const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
 
+// Reusable royal-blue bubble class
+const bubble =
+  "inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-700 text-white font-medium shadow hover:bg-blue-800 transition";
+
 const features = [
   { icon: Calculator, title: "Full-Cycle Bookkeeping", desc: "Monthly close, AR/AP, reconciliations, financial statements, and tidy books you can trust." },
   { icon: LineChart, title: "CFO-Level Insights", desc: "Dashboards, KPIs, cash-flow, and budget vs. actuals so you can make sharp decisions fast." },
@@ -33,10 +37,6 @@ const plans = [
   { name: "CFO Suite", price: "Custom", tagline: "Advanced reporting & advisory", bullets: ["Unlimited txns", "Cash-flow & KPI dashboard", "Budgeting & forecasting", "Monthly strategy call"] },
   { name: "One Time Charge", price: "From $999", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
 ];
-
-// Reusable royal-blue bubble class
-const bubble =
-  "inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-700 text-white font-medium shadow hover:bg-blue-800 transition";
 
 const testimonials = [
   { quote: "PPBK transformed our books and gave us real-time visibility. Closing took hours instead of days.", author: "Jamie L.", role: "Owner, Strength Lab Gym" },
@@ -68,15 +68,16 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
-      {/* NAV (condensed bar + larger logo all platforms) */}
+      {/* HEADER (tight bar; giant logo) */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-3 flex items-center justify-between">
-          {/* BIG logo */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-0">
+          {/* GIANT LOGO */}
           <img
             src="/logo.png"
             alt="PPBK Logo"
-            className="h-40 w-40 sm:h-44 sm:w-44 lg:h-48 lg:w-48 rounded-2xl object-cover"
+            className="h-44 w-44 sm:h-52 sm:w-52 lg:h-56 lg:w-56 rounded-2xl object-cover"
           />
+          {/* Nav */}
           <nav className="hidden md:flex items-center gap-4 text-[0.9rem]">
             <a href="#services" className="hover:text-slate-700">Services</a>
             <a href="#industries" className="hover:text-slate-700">Industries</a>
@@ -84,6 +85,7 @@ export default function Page() {
             <a href="#pricing" className="hover:text-slate-700">Pricing</a>
             <a href="#contact" className="hover:text-slate-700">Contact</a>
           </nav>
+          {/* CTA */}
           <a href="#contact" className={bubble}>
             Get a Quote <ArrowRight className="h-4 w-4" />
           </a>
@@ -92,7 +94,7 @@ export default function Page() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-18 lg:py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -204,7 +206,9 @@ export default function Page() {
             {plans.map((p, i) => (
               <Card
                 key={i}
-                className={`rounded-2xl ${p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""}`}
+                className={`rounded-2xl ${
+                  p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""
+                }`}
               >
                 <CardHeader>
                   <CardTitle className="flex items-baseline justify-between">
