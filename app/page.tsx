@@ -82,16 +82,15 @@ export default function Page() {
                 PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.
               </p>
               <div className="mt-8 flex gap-4">
-                {/* Left button: Contact Now (forced visible styles) */}
-<a
-  href="#contact"
-  className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-slate-900 text-white font-medium shadow hover:bg-slate-800 transition"
-  aria-label="Contact Now"
->
-  Contact Now <ArrowRight className="h-4 w-4" />
-</a>
-                </Button>
-                {/* Right button: View Pricing */}
+                {/* Left button: Contact Now (force-visible styled link) */}
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-slate-900 text-white font-medium shadow hover:bg-slate-800 transition"
+                  aria-label="Contact Now"
+                >
+                  Contact Now <ArrowRight className="h-4 w-4" />
+                </a>
+                {/* Right button: View Pricing (shadcn Button is fine) */}
                 <Button size="lg" variant="outline" className="rounded-2xl" asChild>
                   <a href="#pricing">View Pricing</a>
                 </Button>
