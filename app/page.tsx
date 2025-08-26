@@ -68,14 +68,14 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
-      {/* NAV (condensed bar + larger mobile logo) */}
+      {/* NAV (condensed bar + larger logo all platforms) */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1 sm:py-2 lg:py-3 flex items-center justify-between">
-          {/* Logo: larger on mobile, still big on desktop */}
+          {/* BIG logo */}
           <img
             src="/logo.png"
             alt="PPBK Logo"
-            className="h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 rounded-2xl object-cover"
+            className="h-40 w-40 sm:h-44 sm:w-44 lg:h-48 lg:w-48 rounded-2xl object-cover"
           />
           <nav className="hidden md:flex items-center gap-4 text-[0.9rem]">
             <a href="#services" className="hover:text-slate-700">Services</a>
@@ -204,9 +204,7 @@ export default function Page() {
             {plans.map((p, i) => (
               <Card
                 key={i}
-                className={`rounded-2xl ${
-                  p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""
-                }`}
+                className={`rounded-2xl ${p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""}`}
               >
                 <CardHeader>
                   <CardTitle className="flex items-baseline justify-between">
@@ -339,6 +337,7 @@ export default function Page() {
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-blue-700">Privacy</a>
             <a href="/terms" className="hover:text-blue-700">Terms</a>
+            <a href="/legal" className="hover:text-blue-700">Legal</a>
             <a href="#contact" className="hover:text-blue-700">Contact</a>
           </div>
         </div>
