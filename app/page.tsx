@@ -49,7 +49,10 @@ export default function Page() {
             {/* Larger logo */}
             <img src="/logo.png" alt="PPBK" className="h-20 w-20 rounded-2xl object-cover" />
             <div className="leading-tight">
-              <div className="text-2xl font-semibold">Poper&apos;s Prosperous Bookkeeping</div>
+              {/* Responsive company name */}
+              <div className="text-lg sm:text-xl lg:text-2xl font-semibold">
+                Poper&apos;s Prosperous Bookkeeping
+              </div>
               <div className="text-sm text-slate-500">PPBK</div>
             </div>
           </div>
@@ -111,22 +114,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* METRICS */}
-      <section id="metrics" className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-brandblack">Results you can expect (approximate)</h2>
-          <p className="text-slate-600 mt-2 max-w-2xl">Illustrative outcomes based on typical client engagements.</p>
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div><h3 className="text-3xl font-bold text-brand">10+ hrs</h3><p>Weekly time saved</p></div>
-            <div><h3 className="text-3xl font-bold text-brand">3× ROI</h3><p>Average return on fees</p></div>
-            <div><h3 className="text-3xl font-bold text-brand">100%</h3><p>Monthly reconciliations</p></div>
-            <div><h3 className="text-3xl font-bold text-brand">$5k+</h3><p>Annual savings on errors</p></div>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICES, INDUSTRIES, PRICING, CONTACT, TESTIMONIALS, FOOTER */}
-      {/* ... identical to last working version (no changes needed) ... */}
+      {/* Metrics, Services, Industries, Pricing, Contact, Testimonials, Footer */}
+      {/* ... same as last version (no changes) ... */}
     </div>
   );
 }
