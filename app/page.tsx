@@ -7,6 +7,7 @@ import {
   Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 // ---- Contact constants ----
 const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
@@ -46,16 +47,24 @@ const testimonials = [
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string>("");
 
-  // Optional: allow preselect via ?plan=... in URL
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const p = params.get("plan");
-      if (p) setSelectedPlan(p);
-    }
-  }, []);
+  // Deep-link support
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const onChoosePlan = (name: string) => setSelectedPlan(name);
+  // Preselect from ?plan=... in URL
+  useEffect(() => {
+    const p = searchParams.get("plan");
+    if (p) setSelectedPlan(p);
+  }, [searchParams]);
+
+  // When user chooses a plan, set it and update the URL to ?plan=...#contact
+  const onChoosePlan = (name: string) => {
+    setSelectedPlan(name);
+    const params = new URLSearchParams(Array.from(searchParams.entries()));
+    params.set("plan", name);
+    router.replace(`${pathname}?${params.toString()}#contact`);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
@@ -191,7 +200,7 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-slate-900">Simple pricing</h2>
           <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
+        <div className="mt-10 grid md:grid-cols-3 gap-6">
             {plans.map((p, i) => (
               <Card
                 key={i}
@@ -215,7 +224,7 @@ export default function Page() {
                     ))}
                   </ul>
 
-                  {/* Choose button sets selected plan and scrolls to contact */}
+                  {/* Choose button sets selected plan and updates URL + scrolls */}
                   <a
                     href="#contact"
                     onClick={() => onChoosePlan(p.name)}
