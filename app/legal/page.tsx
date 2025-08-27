@@ -1,48 +1,49 @@
 export const metadata = {
-  title: "Legal | PPBK",
-  description: "Legal information for Poper's Prosperous Bookkeeping (PPBK): Privacy Policy and Terms of Service.",
+  title: "Legal | Poper's Prosperous Bookkeeping (PPBK)",
+  description:
+    "Legal information for Poper's Prosperous Bookkeeping, LLC including ownership, trademarks, and contact information.",
 };
 
 export default function LegalPage() {
   return (
-    <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-slate-800">
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold">Legal</h1>
-      <p className="mt-2 text-sm text-slate-500">
-        Last updated: {new Date().toLocaleDateString()}
-      </p>
+      <p className="mt-2 text-slate-600">Last updated: {new Date().toLocaleDateString()}</p>
 
-      <p className="mt-6">
-        Find our key legal documents below. For questions, email{" "}
-        <a className="text-blue-700 underline" href="mailto:popersprosperousbk@gmail.com">
-          popersprosperousbk@gmail.com
-        </a>{" "}
-        or call{" "}
-        <a className="text-blue-700 underline" href="tel:+16786777210">
-          (678) 677-7210
-        </a>.
-      </p>
+      <section className="mt-8 space-y-6 text-slate-700 leading-relaxed">
+        <p>
+          Poper's Prosperous Bookkeeping, LLC (“PPBK”) operates this website. All content, logos,
+          and brand elements are owned by PPBK unless otherwise noted.
+        </p>
 
-      <ul className="mt-8 space-y-4">
-        <li>
-          <a href="/privacy" className="text-blue-700 underline font-medium">
-            Privacy Policy
+        <h2 className="text-xl font-semibold">Trademarks</h2>
+        <p>
+          “Poper's Prosperous Bookkeeping”, “PPBK”, and associated marks and logos are trademarks or
+          service marks of PPBK. Unauthorized use is prohibited.
+        </p>
+
+        <h2 className="text-xl font-semibold">Website content</h2>
+        <p>
+          Content is provided for informational purposes only and should not be considered legal,
+          tax, or accounting advice.
+        </p>
+
+        <h2 className="text-xl font-semibold">Contact</h2>
+        <p>
+          For legal inquiries, email{" "}
+          <a href="mailto:popersprosperousbk@gmail.com" className="text-blue-700 underline">
+            popersprosperousbk@gmail.com
+          </a>{" "}
+          or call{" "}
+          <a href="tel:+16786777210" className="text-blue-700 underline">
+            (678) 677-7210
           </a>
-          <p className="text-slate-600 text-sm">
-            How we collect, use, and protect your information.
-          </p>
-        </li>
-        <li className="pt-2">
-          <a href="/terms" className="text-blue-700 underline font-medium">
-            Terms of Service
-          </a>
-          <p className="text-slate-600 text-sm">
-            The conditions governing your use of our services and website.
-          </p>
-        </li>
-      </ul>
+          .
+        </p>
+      </section>
 
       <div className="mt-10">
-        <a href="/" className="text-blue-700 hover:underline">
+        <a href="/" className="inline-block rounded-2xl bg-blue-700 text-white px-5 py-3">
           ← Back to Home
         </a>
       </div>

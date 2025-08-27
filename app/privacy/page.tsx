@@ -1,67 +1,70 @@
 export const metadata = {
-  title: "Privacy Policy | PPBK",
+  title: "Privacy Policy | Poper's Prosperous Bookkeeping (PPBK)",
   description:
-    "How Poper's Prosperous Bookkeeping (PPBK) collects, uses, and protects your information.",
+    "Learn how PPBK collects, uses, and protects your information. We value your privacy and keep your data secure.",
 };
 
 export default function PrivacyPage() {
   return (
-    <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-slate-800">
+    <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-3xl font-bold">Privacy Policy</h1>
-      <p className="mt-2 text-sm text-slate-500">
-        Last updated: {new Date().toLocaleDateString()}
-      </p>
+      <p className="mt-2 text-slate-600">Last updated: {new Date().toLocaleDateString()}</p>
 
-      <p className="mt-6">
-        This Privacy Policy explains how <strong>Poper&apos;s Prosperous Bookkeeping, LLC</strong> (“PPBK”, “we”, “our”, or “us”) collects,
-        uses, and protects your information when you use our website (ppbkga.com) and our services.
-      </p>
+      <section className="mt-8 space-y-6 text-slate-700 leading-relaxed">
+        <p>
+          Poper’s Prosperous Bookkeeping, LLC (“PPBK”, “we”, “us”) is committed to protecting your
+          privacy. This policy explains what information we collect, how we use it, and your choices.
+        </p>
 
-      <h2 className="mt-10 text-xl font-semibold">1) Information We Collect</h2>
-      <ul className="mt-4 list-disc pl-6 space-y-2">
-        <li>Contact details (name, email, phone, company)</li>
-        <li>Business information provided when requesting services</li>
-        <li>Website/device data (via cookies/analytics if enabled)</li>
-      </ul>
+        <h2 className="text-xl font-semibold">Information we collect</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>Contact details (name, email, phone) you submit via forms</li>
+          <li>Business information you provide to receive services or quotes</li>
+          <li>Basic analytics (pages visited, device/browser) to improve the website</li>
+        </ul>
 
-      <h2 className="mt-8 text-xl font-semibold">2) How We Use Information</h2>
-      <ul className="mt-4 list-disc pl-6 space-y-2">
-        <li>Respond to inquiries and provide quotes</li>
-        <li>Deliver bookkeeping and advisory services</li>
-        <li>Improve website and customer experience</li>
-        <li>Comply with legal/tax obligations</li>
-      </ul>
+        <h2 className="text-xl font-semibold">How we use information</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>To respond to inquiries and provide quotes or services</li>
+          <li>To operate, maintain, and improve our website and offerings</li>
+          <li>To comply with legal obligations</li>
+        </ul>
 
-      <h2 className="mt-8 text-xl font-semibold">3) Sharing</h2>
-      <p className="mt-4">
-        We never sell your information. We may share data with trusted providers like Formspree (forms), Vercel (hosting), or QuickBooks if you hire us to work in your books.
-      </p>
+        <h2 className="text-xl font-semibold">Sharing</h2>
+        <p>
+          We do not sell your data. We may share with trusted processors (e.g., form handling,
+          hosting, analytics) strictly to provide our services, bound by confidentiality and
+          security obligations, or when required by law.
+        </p>
 
-      <h2 className="mt-8 text-xl font-semibold">4) Data Retention & Security</h2>
-      <p className="mt-4">
-        We keep data only as long as needed and apply reasonable safeguards, but no method of transmission is 100% secure.
-      </p>
+        <h2 className="text-xl font-semibold">Security</h2>
+        <p>
+          We use reasonable technical and organizational safeguards to protect your information.
+          However, no method of transmission or storage is 100% secure.
+        </p>
 
-      <h2 className="mt-8 text-xl font-semibold">5) Your Rights</h2>
-      <p className="mt-4">
-        You may request access, correction, or deletion of your personal data by contacting us.
-      </p>
+        <h2 className="text-xl font-semibold">Your choices</h2>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>You can request access, correction, or deletion of your data</li>
+          <li>You can opt out of non-essential communications</li>
+        </ul>
 
-      <h2 className="mt-8 text-xl font-semibold">6) Contact</h2>
-      <p className="mt-4">
-        Email:{" "}
-        <a href="mailto:popersprosperousbk@gmail.com" className="text-blue-700 underline">
-          popersprosperousbk@gmail.com
-        </a>
-        <br />
-        Phone:{" "}
-        <a href="tel:+16786777210" className="text-blue-700 underline">
-          (678) 677-7210
-        </a>
-      </p>
+        <h2 className="text-xl font-semibold">Contact</h2>
+        <p>
+          Questions? Email{" "}
+          <a href="mailto:popersprosperousbk@gmail.com" className="text-blue-700 underline">
+            popersprosperousbk@gmail.com
+          </a>{" "}
+          or call{" "}
+          <a href="tel:+16786777210" className="text-blue-700 underline">
+            (678) 677-7210
+          </a>
+          .
+        </p>
+      </section>
 
       <div className="mt-10">
-        <a href="/" className="text-blue-700 hover:underline">
+        <a href="/" className="inline-block rounded-2xl bg-blue-700 text-white px-5 py-3">
           ← Back to Home
         </a>
       </div>
