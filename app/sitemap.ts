@@ -1,15 +1,16 @@
-Set-Content -Path app\sitemap.ts -Value @"
+// app/sitemap.ts
 import type { MetadataRoute } from "next";
+
+// Ensure this route is treated as static at build time
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.ppbkga.com";
-  const last = new Date();
   return [
-    { url: \`\${base}/\`, lastModified: last, changeFrequency: "monthly", priority: 1 },
-    { url: \`\${base}/privacy\`, lastModified: last, changeFrequency: "yearly", priority: 0.3 },
-    { url: \`\${base}/terms\`, lastModified: last, changeFrequency: "yearly", priority: 0.3 },
-    { url: \`\${base}/legal\`, lastModified: last, changeFrequency: "yearly", priority: 0.2 },
-    { url: \`\${base}/thanks\`, lastModified: last, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${base}/`, changeFrequency: "monthly", priority: 1 },
+    { url: `${base}/privacy`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/terms`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${base}/legal`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${base}/thanks`, changeFrequency: "yearly", priority: 0.2 },
   ];
 }
-"@
