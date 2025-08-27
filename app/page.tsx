@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Check, Calculator, LineChart, ShieldCheck, Clock, Mail, Phone,
-  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
+  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin, Star
 } from "lucide-react";
 
 // ---- Contact constants ----
@@ -12,7 +12,7 @@ const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
 const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
 const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
 
-// ---- Review links (replace with your real ones later) ----
+// ---- Public review links (replace with your real URLs after GBP/Facebook are ready) ----
 const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
 const FACEBOOK_REVIEW_URL = "https://www.facebook.com/YOUR_PAGE/reviews";
 
@@ -43,6 +43,8 @@ const plans = [
 
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const [rating, setRating] = useState<number>(0);
+  const [hoverRating, setHoverRating] = useState<number>(0);
 
   // Preselect from ?plan=... in URL
   useEffect(() => {
@@ -165,7 +167,7 @@ export default function Page() {
       <section id="pricing" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold">Simple pricing</h2>
-          <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
+        <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
             {plans.map((p, i) => (
               <div
@@ -201,13 +203,81 @@ export default function Page() {
         </div>
       </section>
 
-      {/* REVIEWS (external links only to avoid extra dependencies) */}
+      {/* LEAVE A REVIEW (On-site form + External links) */}
       <section id="reviews" className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-slate-900">Leave a review</h2>
-          <p className="text-slate-600 mt-2">Prefer leaving a public review?</p>
+          <p className="text-slate-600 mt-2">Share your experience here, or post publicly on Google or Facebook.</p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          {/* On-site review form (Formspree) */}
+          <div className="mt-8 rounded-2xl border bg-white">
+            <div className="p-6">
+              <div className="text-xl font-semibold">Write a review</div>
+              <div className="text-slate-600">We appreciate your feedback!</div>
+            </div>
+            <div className="p-6 pt-0">
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                {/* Identify submission type and redirect */}
+                <input type="hidden" name="submissionType" value="review" />
+                <input type="hidden" name="_subject" value="New review submitted on PPBK website" />
+                <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Your name" required />
+                  <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email (not published)" type="email" required />
+                </div>
+
+                {/* Star rating */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Your rating</label>
+                  <div className="flex items-center gap-2">
+                    {[1,2,3,4,5].map((n) => {
+                      const filled = (hoverRating || rating) >= n;
+                      return (
+                        <button
+                          type="button"
+                          key={n}
+                          onClick={() => setRating(n)}
+                          onMouseEnter={() => setHoverRating(n)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          className="p-1"
+                          aria-label={`${n} star${n>1 ? "s" : ""}`}
+                        >
+                          <Star className={`h-7 w-7 ${filled ? "fill-blue-700 text-blue-700" : "text-slate-300"}`} />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {/* Submit rating value */}
+                  <input type="hidden" name="rating" value={rating} />
+                </div>
+
+                <textarea
+                  className="border rounded-xl p-3 min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  name="review"
+                  placeholder="What did we help you achieve? Any specific outcomes, time saved, or peace of mind to share?"
+                  required
+                />
+
+                <label className="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="checkbox" name="consentToPublish" value="yes" className="h-4 w-4 rounded border-slate-300" />
+                  I’m happy for PPBK to display my review (name & company) on the website.
+                </label>
+
+                <button type="submit" className={bubble}>
+                  Submit Review <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* External review buttons */}
+          <div className="pt-6 text-sm text-slate-500">Prefer leaving a public review?</div>
+          <div className="flex flex-wrap gap-3">
             <a
               href={GOOGLE_REVIEW_URL}
               target="_blank"
@@ -268,7 +338,6 @@ export default function Page() {
                 method="POST"
                 className="grid grid-cols-1 gap-4"
               >
-                {/* Selected plan (visible and editable) */}
                 <label className="text-sm font-medium text-slate-700">Plan (optional)</label>
                 <select
                   name="plan"
