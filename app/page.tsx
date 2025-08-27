@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Check, Calculator, LineChart, ShieldCheck, Clock, Mail, Phone,
-  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
+  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin, Star
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 
@@ -45,6 +45,8 @@ const testimonials = [
 
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const [rating, setRating] = useState<number>(0);         // ⭐ rating for reviews
+  const [hoverRating, setHoverRating] = useState<number>(0);
 
   // Preselect from ?plan=... in URL on first client render
   useEffect(() => {
@@ -83,6 +85,7 @@ export default function Page() {
             <a href="#industries" className="hover:text-slate-700">Industries</a>
             <a href="#metrics" className="hover:text-slate-700">Results</a>
             <a href="#pricing" className="hover:text-slate-700">Pricing</a>
+            <a href="#reviews" className="hover:text-slate-700">Reviews</a>
             <a href="#contact" className="hover:text-slate-700">Contact</a>
           </nav>
           {/* CTA */}
@@ -241,7 +244,104 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CTA + CONTACT */}
+      {/* LEAVE A REVIEW */}
+      <section id="reviews" className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900">Leave a review</h2>
+          <p className="text-slate-600 mt-2">Your feedback helps other business owners choose with confidence.</p>
+
+          <Card className="mt-8 rounded-2xl">
+            <CardHeader>
+              <CardTitle>Share your experience</CardTitle>
+              <CardDescription>Rate your experience, tell us what stood out, and (optionally) allow us to showcase your review.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                {/* Identify this submission type */}
+                <input type="hidden" name="submissionType" value="review" />
+                <input type="hidden" name="_subject" value="New review submitted on PPBK website" />
+                <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
+
+                {/* Name / Email */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Your name" required />
+                  <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email (not published)" type="email" required />
+                </div>
+
+                {/* Company (optional) */}
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="company" placeholder="Company (optional)" />
+
+                {/* Star rating */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Your rating</label>
+                  <div className="flex items-center gap-2">
+                    {[1,2,3,4,5].map((n) => {
+                      const filled = (hoverRating || rating) >= n;
+                      return (
+                        <button
+                          type="button"
+                          key={n}
+                          onClick={() => setRating(n)}
+                          onMouseEnter={() => setHoverRating(n)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          className="p-1"
+                          aria-label={`${n} star${n>1 ? "s" : ""}`}
+                        >
+                          <Star className={`h-7 w-7 ${filled ? "fill-blue-700 text-blue-700" : "text-slate-300"}`} />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {/* submit rating value */}
+                  <input type="hidden" name="rating" value={rating} />
+                </div>
+
+                {/* Review text */}
+                <textarea
+                  className="border rounded-xl p-3 min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  name="review"
+                  placeholder="What did we help you achieve? Any specific outcomes, time saved, or peace of mind to share?"
+                  required
+                />
+
+                {/* Consent to display */}
+                <label className="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input type="checkbox" name="consentToPublish" value="yes" className="h-4 w-4 rounded border-slate-300" />
+                  I’m happy for PPBK to display my review (name & company) on the website.
+                </label>
+
+                {/* Submit */}
+                <button type="submit" className={bubble}>
+                  Submit Review <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS (existing) */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900">What clients say</h2>
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            {testimonials.map((t, i) => (
+              <Card key={i} className="rounded-2xl">
+                <CardContent className="pt-6">
+                  <p className="text-lg">“{t.quote}”</p>
+                  <p className="mt-4 text-sm text-slate-600">— {t.author}, {t.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
       <section id="contact" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
@@ -269,7 +369,7 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Form */}
+          {/* Quote form */}
           <Card className="rounded-2xl">
             <CardHeader>
               <CardTitle>Request a quote</CardTitle>
@@ -314,23 +414,6 @@ export default function Page() {
               </form>
             </CardContent>
           </Card>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">What clients say</h2>
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            {testimonials.map((t, i) => (
-              <Card key={i} className="rounded-2xl">
-                <CardContent className="pt-6">
-                  <p className="text-lg">“{t.quote}”</p>
-                  <p className="mt-4 text-sm text-slate-600">— {t.author}, {t.role}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
