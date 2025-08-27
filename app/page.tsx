@@ -4,16 +4,15 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Check, Calculator, LineChart, ShieldCheck, Clock, Mail, Phone,
-  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin, Star
+  Banknote, Building2, FileSpreadsheet, ArrowRight, Facebook, Linkedin
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../components/ui/card";
 
 // ---- Contact constants ----
 const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
 const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
 const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
 
-// ---- Review links (replace with your real ones) ----
+// ---- Review links (replace with your real ones later) ----
 const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
 const FACEBOOK_REVIEW_URL = "https://www.facebook.com/YOUR_PAGE/reviews";
 
@@ -44,8 +43,6 @@ const plans = [
 
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string>("");
-  const [rating, setRating] = useState<number>(0);
-  const [hoverRating, setHoverRating] = useState<number>(0);
 
   // Preselect from ?plan=... in URL
   useEffect(() => {
@@ -132,15 +129,18 @@ export default function Page() {
       <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold">Services</h2>
+          <p className="text-slate-600 mt-2">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
           <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
-              <Card key={i} className="rounded-2xl hover:shadow-md transition-shadow">
-                <CardHeader>
-                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-700 grid place-items-center"><f.icon className="h-5 w-5" /></div>
-                  <CardTitle className="mt-3 text-lg">{f.title}</CardTitle>
-                  <CardDescription>{f.desc}</CardDescription>
-                </CardHeader>
-              </Card>
+              <div key={i} className="rounded-2xl border bg-white hover:shadow-md transition-shadow">
+                <div className="p-6">
+                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-700 grid place-items-center">
+                    <f.icon className="h-5 w-5" />
+                  </div>
+                  <div className="mt-3 text-lg font-semibold">{f.title}</div>
+                  <div className="mt-1 text-slate-600">{f.desc}</div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -165,30 +165,65 @@ export default function Page() {
       <section id="pricing" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold">Simple pricing</h2>
+          <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
             {plans.map((p, i) => (
-              <Card key={i} className={`rounded-2xl ${p.featured ? "border-blue-700 shadow" : ""}`}>
-                <CardHeader>
-                  <CardTitle className="flex items-baseline justify-between">
-                    <span>{p.name}</span>
+              <div
+                key={i}
+                className={`rounded-2xl border bg-white ${p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""}`}
+              >
+                <div className="p-6">
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-lg font-semibold">{p.name}</span>
                     <span className="text-2xl font-extrabold text-blue-700">{p.price}</span>
-                  </CardTitle>
-                  <CardDescription>{p.tagline}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
+                  </div>
+                  <div className="text-slate-600 mt-1">{p.tagline}</div>
+
+                  <ul className="space-y-2 mt-4">
                     {p.bullets.map((b, j) => (
                       <li key={j} className="flex gap-2 text-sm">
                         <Check className="h-4 w-4 mt-0.5 text-blue-700" /> {b}
                       </li>
                     ))}
                   </ul>
-                  <a href="#contact" onClick={() => onChoosePlan(p.name)} className={`${bubble} w-full justify-center mt-6`}>
+
+                  <a
+                    href="#contact"
+                    onClick={() => onChoosePlan(p.name)}
+                    className={`${bubble} w-full justify-center mt-6`}
+                  >
                     Choose {p.name}
                   </a>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS (external links only to avoid extra dependencies) */}
+      <section id="reviews" className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900">Leave a review</h2>
+          <p className="text-slate-600 mt-2">Prefer leaving a public review?</p>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={GOOGLE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-blue-700 text-blue-700 font-medium hover:bg-blue-50 transition"
+            >
+              Review on Google
+            </a>
+            <a
+              href={FACEBOOK_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-blue-700 text-blue-700 font-medium hover:bg-blue-50 transition"
+            >
+              Review on Facebook
+            </a>
           </div>
         </div>
       </section>
@@ -198,45 +233,86 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
             <h2 className="text-3xl font-bold">Let’s tidy your books</h2>
+            <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
+
+            {/* Contact info */}
             <div className="mt-6 space-y-3 text-slate-700">
-              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline"><Mail className="h-5 w-5 text-blue-700" />{CONTACT_EMAIL}</a>
-              <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline"><Phone className="h-5 w-5 text-blue-700" />{CONTACT_PHONE_DISPLAY}</a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline">
+                <Mail className="h-5 w-5 text-blue-700" />
+                {CONTACT_EMAIL}
+              </a>
+              <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline">
+                <Phone className="h-5 w-5 text-blue-700" />
+                {CONTACT_PHONE_DISPLAY}
+              </a>
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
-              <a href="#" aria-label="Facebook" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition"><Facebook className="h-4 w-4" /></a>
-              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition"><Linkedin className="h-4 w-4" /></a>
+              <a href="#" aria-label="Facebook" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition">
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition">
+                <Linkedin className="h-4 w-4" />
+              </a>
             </div>
           </div>
-          <Card className="rounded-2xl">
-            <CardHeader>
-              <CardTitle>Request a quote</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form action="https://formspree.io/f/xkgvnnww" method="POST" className="grid grid-cols-1 gap-4">
-                <select name="plan" className="border rounded-xl p-3" value={selectedPlan} onChange={(e) => setSelectedPlan(e.target.value)}>
+
+          {/* Quote form */}
+          <div className="rounded-2xl border bg-white">
+            <div className="p-6">
+              <div className="text-xl font-semibold">Request a quote</div>
+              <div className="text-slate-600">We’ll reply within one business day.</div>
+            </div>
+            <div className="p-6 pt-0">
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                {/* Selected plan (visible and editable) */}
+                <label className="text-sm font-medium text-slate-700">Plan (optional)</label>
+                <select
+                  name="plan"
+                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  value={selectedPlan}
+                  onChange={(e) => setSelectedPlan(e.target.value)}
+                >
                   <option value="">Select a plan…</option>
-                  {plans.map((p) => (<option key={p.name} value={p.name}>{p.name}</option>))}
+                  {plans.map((p) => (
+                    <option key={p.name} value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
                 </select>
-                <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
-                <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
-                <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
+
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Full name" required />
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email" type="email" required />
+                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="company" placeholder="Company (optional)" />
+                <textarea className="border rounded-xl p-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-blue-200" name="message" placeholder="What do you need help with?" />
+
                 <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
                 <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
-                <button type="submit" className={bubble}>Send <ArrowRight className="h-4 w-4" /></button>
+
+                {/* Bubble-style submit (royal blue) */}
+                <button type="submit" className={bubble}>
+                  Send <ArrowRight className="h-4 w-4" />
+                </button>
+
+                <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
               </form>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* FOOTER */}
       <footer className="border-t">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>© {new Date().getFullYear()} Poper&apos;s Prosperous Bookkeeping</div>
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-blue-700">Privacy</a>
             <a href="/terms" className="hover:text-blue-700">Terms</a>
             <a href="/legal" className="hover:text-blue-700">Legal</a>
+            <a href="#contact" className="hover:text-blue-700">Contact</a>
           </div>
         </div>
       </footer>
