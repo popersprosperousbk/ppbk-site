@@ -13,6 +13,10 @@ const CONTACT_EMAIL = "popersprosperousbk@gmail.com";
 const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
 const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
 
+// ---- Review links (replace with your real ones) ----
+const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
+const FACEBOOK_REVIEW_URL = "https://www.facebook.com/YOUR_PAGE/reviews";
+
 // Reusable royal-blue bubble class
 const bubble =
   "inline-flex items-center gap-2 rounded-2xl px-5 py-3 bg-blue-700 text-white font-medium shadow hover:bg-blue-800 transition";
@@ -38,17 +42,12 @@ const plans = [
   { name: "One Time Charge", price: "From $999", tagline: "Cleanup / Reconciliation", bullets: ["Historical cleanup", "Bank & credit reconciliations", "Chart of accounts repair", "Tax-ready financials"] },
 ];
 
-const testimonials = [
-  { quote: "PPBK transformed our books and gave us real-time visibility. Closing took hours instead of days.", author: "Jamie L.", role: "Owner, Strength Lab Gym" },
-  { quote: "Their cleanup saved our tax season. The dashboards make decisions obvious.", author: "Ari M.", role: "CEO, Midtown Digital" },
-];
-
 export default function Page() {
   const [selectedPlan, setSelectedPlan] = useState<string>("");
-  const [rating, setRating] = useState<number>(0);         // ⭐ rating for reviews
+  const [rating, setRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
 
-  // Preselect from ?plan=... in URL on first client render
+  // Preselect from ?plan=... in URL
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -57,7 +56,6 @@ export default function Page() {
     }
   }, []);
 
-  // Choose a plan: set state, update URL to ?plan=...#contact (no reload)
   const onChoosePlan = (name: string) => {
     setSelectedPlan(name);
     if (typeof window !== "undefined") {
@@ -70,7 +68,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white text-slate-900">
-      {/* HEADER (tight bar; giant logo) */}
+      {/* HEADER */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between py-0">
           {/* GIANT LOGO */}
@@ -97,15 +95,10 @@ export default function Page() {
 
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-18 lg:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-2 gap-10 items-center"
-          >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="grid lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+              <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">
                 <span className="text-blue-700">Prosperous</span> books.{" "}
                 <span className="text-slate-900">Confident</span> decisions.
               </h1>
@@ -113,27 +106,11 @@ export default function Page() {
                 PPBK delivers precise bookkeeping, clean financials, and advisory that helps small businesses grow with clarity.
               </p>
               <div className="mt-8 flex gap-4">
-                <a href="#contact" className={bubble}>
-                  Contact Now <ArrowRight className="h-4 w-4" />
-                </a>
-                <a href="#pricing" className={bubble}>
-                  View Pricing <ArrowRight className="h-4 w-4" />
-                </a>
+                <a href="#contact" className={bubble}>Contact Now <ArrowRight className="h-4 w-4" /></a>
+                <a href="#pricing" className={bubble}>View Pricing <ArrowRight className="h-4 w-4" /></a>
               </div>
               <div className="mt-6 text-sm text-blue-700 font-medium">QuickBooks</div>
             </div>
-
-            {/* Info card */}
-            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.1 }}>
-              <div className="rounded-3xl border bg-white shadow-sm p-6">
-                <p className="font-medium text-slate-700">Your books, audit-ready.</p>
-                <ul className="mt-3 list-disc pl-5 text-sm text-slate-600 space-y-1">
-                  <li>Monthly close and reconciliations handled for you</li>
-                  <li>Clean chart of accounts and clear reporting</li>
-                  <li>Seamless tools: QuickBooks</li>
-                </ul>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -141,25 +118,12 @@ export default function Page() {
       {/* METRICS */}
       <section id="metrics" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">Results you can expect (approximate)</h2>
-          <p className="text-slate-600 mt-2 max-w-2xl">Illustrative outcomes based on typical client engagements.</p>
+          <h2 className="text-3xl font-bold">Results you can expect (approximate)</h2>
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <h3 className="text-3xl font-extrabold text-blue-700">10+ hrs</h3>
-              <p>Weekly time saved</p>
-            </div>
-            <div>
-              <h3 className="text-3xl font-extrabold text-blue-700">3× ROI</h3>
-              <p>Average return on fees</p>
-            </div>
-            <div>
-              <h3 className="text-3xl font-extrabold text-blue-700">100%</h3>
-              <p>Monthly reconciliations</p>
-            </div>
-            <div>
-              <h3 className="text-3xl font-extrabold text-blue-700">$5k+</h3>
-              <p>Annual savings on errors</p>
-            </div>
+            <div><h3 className="text-3xl font-extrabold text-blue-700">10+ hrs</h3><p>Weekly time saved</p></div>
+            <div><h3 className="text-3xl font-extrabold text-blue-700">3× ROI</h3><p>Average return on fees</p></div>
+            <div><h3 className="text-3xl font-extrabold text-blue-700">100%</h3><p>Monthly reconciliations</p></div>
+            <div><h3 className="text-3xl font-extrabold text-blue-700">$5k+</h3><p>Annual savings on errors</p></div>
           </div>
         </div>
       </section>
@@ -167,15 +131,12 @@ export default function Page() {
       {/* SERVICES */}
       <section id="services" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">Services</h2>
-          <p className="text-slate-600 mt-2">Everything you need from day-to-day bookkeeping to strategic finance guidance.</p>
+          <h2 className="text-3xl font-bold">Services</h2>
           <div className="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f, i) => (
               <Card key={i} className="rounded-2xl hover:shadow-md transition-shadow">
                 <CardHeader>
-                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-700 grid place-items-center">
-                    <f.icon className="h-5 w-5" />
-                  </div>
+                  <div className="h-10 w-10 rounded-xl bg-blue-50 text-blue-700 grid place-items-center"><f.icon className="h-5 w-5" /></div>
                   <CardTitle className="mt-3 text-lg">{f.title}</CardTitle>
                   <CardDescription>{f.desc}</CardDescription>
                 </CardHeader>
@@ -188,7 +149,7 @@ export default function Page() {
       {/* INDUSTRIES */}
       <section id="industries" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">Who we serve</h2>
+          <h2 className="text-3xl font-bold">Who we serve</h2>
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
             {industries.map((it, i) => (
               <div key={i} className="rounded-2xl border bg-white p-6 flex items-center gap-3">
@@ -203,16 +164,10 @@ export default function Page() {
       {/* PRICING */}
       <section id="pricing" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">Simple pricing</h2>
-          <p className="text-slate-600 mt-2">Transparent monthly plans. Cancel anytime.</p>
+          <h2 className="text-3xl font-bold">Simple pricing</h2>
           <div className="mt-10 grid md:grid-cols-3 gap-6">
             {plans.map((p, i) => (
-              <Card
-                key={i}
-                className={`rounded-2xl ${
-                  p.featured ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]" : ""
-                }`}
-              >
+              <Card key={i} className={`rounded-2xl ${p.featured ? "border-blue-700 shadow" : ""}`}>
                 <CardHeader>
                   <CardTitle className="flex items-baseline justify-between">
                     <span>{p.name}</span>
@@ -228,112 +183,9 @@ export default function Page() {
                       </li>
                     ))}
                   </ul>
-
-                  {/* Choose button sets selected plan and updates URL + scrolls */}
-                  <a
-                    href="#contact"
-                    onClick={() => onChoosePlan(p.name)}
-                    className={`${bubble} w-full justify-center mt-6`}
-                  >
+                  <a href="#contact" onClick={() => onChoosePlan(p.name)} className={`${bubble} w-full justify-center mt-6`}>
                     Choose {p.name}
                   </a>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* LEAVE A REVIEW */}
-      <section id="reviews" className="py-16 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">Leave a review</h2>
-          <p className="text-slate-600 mt-2">Your feedback helps other business owners choose with confidence.</p>
-
-          <Card className="mt-8 rounded-2xl">
-            <CardHeader>
-              <CardTitle>Share your experience</CardTitle>
-              <CardDescription>Rate your experience, tell us what stood out, and (optionally) allow us to showcase your review.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form
-                action="https://formspree.io/f/xkgvnnww"
-                method="POST"
-                className="grid grid-cols-1 gap-4"
-              >
-                {/* Identify this submission type */}
-                <input type="hidden" name="submissionType" value="review" />
-                <input type="hidden" name="_subject" value="New review submitted on PPBK website" />
-                <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
-
-                {/* Name / Email */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Your name" required />
-                  <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email (not published)" type="email" required />
-                </div>
-
-                {/* Company (optional) */}
-                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="company" placeholder="Company (optional)" />
-
-                {/* Star rating */}
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Your rating</label>
-                  <div className="flex items-center gap-2">
-                    {[1,2,3,4,5].map((n) => {
-                      const filled = (hoverRating || rating) >= n;
-                      return (
-                        <button
-                          type="button"
-                          key={n}
-                          onClick={() => setRating(n)}
-                          onMouseEnter={() => setHoverRating(n)}
-                          onMouseLeave={() => setHoverRating(0)}
-                          className="p-1"
-                          aria-label={`${n} star${n>1 ? "s" : ""}`}
-                        >
-                          <Star className={`h-7 w-7 ${filled ? "fill-blue-700 text-blue-700" : "text-slate-300"}`} />
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {/* submit rating value */}
-                  <input type="hidden" name="rating" value={rating} />
-                </div>
-
-                {/* Review text */}
-                <textarea
-                  className="border rounded-xl p-3 min-h-[140px] focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  name="review"
-                  placeholder="What did we help you achieve? Any specific outcomes, time saved, or peace of mind to share?"
-                  required
-                />
-
-                {/* Consent to display */}
-                <label className="inline-flex items-center gap-2 text-sm text-slate-700">
-                  <input type="checkbox" name="consentToPublish" value="yes" className="h-4 w-4 rounded border-slate-300" />
-                  I’m happy for PPBK to display my review (name & company) on the website.
-                </label>
-
-                {/* Submit */}
-                <button type="submit" className={bubble}>
-                  Submit Review <ArrowRight className="h-4 w-4" />
-                </button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS (existing) */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-slate-900">What clients say</h2>
-          <div className="mt-8 grid md:grid-cols-2 gap-6">
-            {testimonials.map((t, i) => (
-              <Card key={i} className="rounded-2xl">
-                <CardContent className="pt-6">
-                  <p className="text-lg">“{t.quote}”</p>
-                  <p className="mt-4 text-sm text-slate-600">— {t.author}, {t.role}</p>
                 </CardContent>
               </Card>
             ))}
@@ -345,72 +197,32 @@ export default function Page() {
       <section id="contact" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
           <div>
-            <h2 className="text-3xl font-bold text-slate-900">Let’s tidy your books</h2>
-            <p className="text-slate-600 mt-2 max-w-xl">Tell us about your business and we’ll propose the right plan within 24 hours.</p>
-
-            {/* Contact info */}
+            <h2 className="text-3xl font-bold">Let’s tidy your books</h2>
             <div className="mt-6 space-y-3 text-slate-700">
-              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline">
-                <Mail className="h-5 w-5 text-blue-700" />
-                {CONTACT_EMAIL}
-              </a>
-              <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline">
-                <Phone className="h-5 w-5 text-blue-700" />
-                {CONTACT_PHONE_DISPLAY}
-              </a>
+              <a href={`mailto:${CONTACT_EMAIL}`} className="flex items-center gap-3 hover:underline"><Mail className="h-5 w-5 text-blue-700" />{CONTACT_EMAIL}</a>
+              <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex items-center gap-3 hover:underline"><Phone className="h-5 w-5 text-blue-700" />{CONTACT_PHONE_DISPLAY}</a>
             </div>
             <div className="mt-6 flex gap-3 text-slate-500">
-              <a href="#" aria-label="Facebook" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition">
-                <Facebook className="h-4 w-4" />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition">
-                <Linkedin className="h-4 w-4" />
-              </a>
+              <a href="#" aria-label="Facebook" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition"><Facebook className="h-4 w-4" /></a>
+              <a href="#" aria-label="LinkedIn" className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition"><Linkedin className="h-4 w-4" /></a>
             </div>
           </div>
-
-          {/* Quote form */}
           <Card className="rounded-2xl">
             <CardHeader>
               <CardTitle>Request a quote</CardTitle>
-              <CardDescription>We’ll reply within one business day.</CardDescription>
             </CardHeader>
             <CardContent>
-              <form
-                action="https://formspree.io/f/xkgvnnww"
-                method="POST"
-                className="grid grid-cols-1 gap-4"
-              >
-                {/* Selected plan (visible and editable) */}
-                <label className="text-sm font-medium text-slate-700">Plan (optional)</label>
-                <select
-                  name="plan"
-                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  value={selectedPlan}
-                  onChange={(e) => setSelectedPlan(e.target.value)}
-                >
+              <form action="https://formspree.io/f/xkgvnnww" method="POST" className="grid grid-cols-1 gap-4">
+                <select name="plan" className="border rounded-xl p-3" value={selectedPlan} onChange={(e) => setSelectedPlan(e.target.value)}>
                   <option value="">Select a plan…</option>
-                  {plans.map((p) => (
-                    <option key={p.name} value={p.name}>
-                      {p.name}
-                    </option>
-                  ))}
+                  {plans.map((p) => (<option key={p.name} value={p.name}>{p.name}</option>))}
                 </select>
-
-                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="name" placeholder="Full name" required />
-                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="email" placeholder="Email" type="email" required />
-                <input className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200" name="company" placeholder="Company (optional)" />
-                <textarea className="border rounded-xl p-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-blue-200" name="message" placeholder="What do you need help with?" />
-
+                <input className="border rounded-xl p-3" name="name" placeholder="Full name" required />
+                <input className="border rounded-xl p-3" name="email" placeholder="Email" type="email" required />
+                <textarea className="border rounded-xl p-3 min-h-[120px]" name="message" placeholder="What do you need help with?" />
                 <input type="hidden" name="_subject" value="New inquiry from PPBK website" />
                 <input type="hidden" name="_next" value="https://www.ppbkga.com/thanks" />
-
-                {/* Bubble-style submit (royal blue) */}
-                <button type="submit" className={bubble}>
-                  Send <ArrowRight className="h-4 w-4" />
-                </button>
-
-                <p className="text-xs text-slate-500">By sending this form you agree to our friendly privacy policy.</p>
+                <button type="submit" className={bubble}>Send <ArrowRight className="h-4 w-4" /></button>
               </form>
             </CardContent>
           </Card>
@@ -419,13 +231,12 @@ export default function Page() {
 
       {/* FOOTER */}
       <footer className="border-t">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm flex flex-col md:flex-row items-center justify-between gap-4">
           <div>© {new Date().getFullYear()} Poper&apos;s Prosperous Bookkeeping</div>
           <div className="flex gap-6">
             <a href="/privacy" className="hover:text-blue-700">Privacy</a>
             <a href="/terms" className="hover:text-blue-700">Terms</a>
             <a href="/legal" className="hover:text-blue-700">Legal</a>
-            <a href="#contact" className="hover:text-blue-700">Contact</a>
           </div>
         </div>
       </footer>
