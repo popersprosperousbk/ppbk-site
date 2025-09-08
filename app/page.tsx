@@ -31,7 +31,7 @@ const LINKEDIN_URL = "https://www.linkedin.com/"; // optional: replace with your
 
 // ---- Public review links (optional placeholders) ----
 const GOOGLE_REVIEW_URL =
-  "https://search.google.com/local/writereview?placeid=CeNaokGWZ8GMEBM";
+  "https://g.page/r/CeNaokGWZ8GMEBM/review";
 const FACEBOOK_REVIEW_URL = "https://www.facebook.com/profile.php?id=61580513487167&sk=reviews";
 
 // Reusable royal-blue bubble class
