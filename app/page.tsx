@@ -294,3 +294,303 @@ export default function Page() {
                     ? "border-blue-700 shadow-[0_10px_30px_rgba(29,78,216,0.12)]"
                     : ""
                 }`}
+              >
+                <div className="p-6">
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-lg font-semibold">{p.name}</span>
+                    <span className="text-2xl font-extrabold text-blue-700">
+                      {p.price}
+                    </span>
+                  </div>
+                  <div className="text-slate-600 mt-1">{p.tagline}</div>
+
+                  <ul className="space-y-2 mt-4">
+                    {p.bullets.map((b, j) => (
+                      <li key={j} className="flex gap-2 text-sm">
+                        <Check className="h-4 w-4 mt-0.5 text-blue-700" /> {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="#contact"
+                    onClick={() => onChoosePlan(p.name)}
+                    className={`${bubble} w-full justify-center mt-6`}
+                  >
+                    Choose {p.name}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900">Leave a review</h2>
+          <p className="text-slate-600 mt-2">
+            Share your experience here, or post publicly on Google or Facebook.
+          </p>
+
+          {/* On-site review form (Formspree) */}
+          <div className="mt-8 rounded-2xl border bg-white">
+            <div className="p-6">
+              <div className="text-xl font-semibold">Write a review</div>
+              <div className="text-slate-600">We appreciate your feedback!</div>
+            </div>
+            <div className="p-6 pt-0">
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                {/* Identify submission type and redirect */}
+                <input
+                  type="hidden"
+                  name="submissionType"
+                  value="review"
+                />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New review submitted on PPBK website"
+                />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://www.ppbkga.com/thanks"
+                />
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <input
+                    className="border rounded-xl p-3"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                  />
+                  <input
+                    className="border rounded-xl p-3"
+                    name="email"
+                    placeholder="Email (not published)"
+                    type="email"
+                    required
+                  />
+                </div>
+
+                {/* Star rating */}
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Your rating
+                  </label>
+                  <div className="flex items-center gap-2">
+                    {[1, 2, 3, 4, 5].map((n) => {
+                      const filled = (hoverRating || rating) >= n;
+                      return (
+                        <button
+                          type="button"
+                          key={n}
+                          onClick={() => setRating(n)}
+                          onMouseEnter={() => setHoverRating(n)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          className="p-1"
+                          aria-label={`${n} star${n > 1 ? "s" : ""}`}
+                        >
+                          <Star
+                            className={`h-7 w-7 ${
+                              filled
+                                ? "fill-blue-700 text-blue-700"
+                                : "text-slate-300"
+                            }`}
+                          />
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {/* Submit rating value */}
+                  <input type="hidden" name="rating" value={rating} />
+                </div>
+
+                <textarea
+                  className="border rounded-xl p-3 min-h-[140px]"
+                  name="review"
+                  placeholder="What did we help you achieve? Any specific outcomes, time saved, or peace of mind to share?"
+                  required
+                />
+
+                <label className="inline-flex items-center gap-2 text-sm text-slate-700">
+                  <input
+                    type="checkbox"
+                    name="consentToPublish"
+                    value="yes"
+                    className="h-4 w-4 rounded border-slate-300"
+                  />
+                  I’m happy for PPBK to display my review (name & company) on the
+                  website.
+                </label>
+
+                <button type="submit" className={bubble}>
+                  Submit Review <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* External review buttons */}
+          <div className="pt-6 text-sm text-slate-500">
+            Prefer leaving a public review?
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={GOOGLE_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-blue-700 text-blue-700 font-medium hover:bg-blue-50 transition"
+            >
+              Review on Google
+            </a>
+            <a
+              href={FACEBOOK_REVIEW_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 border border-blue-700 text-blue-700 font-medium hover:bg-blue-50 transition"
+            >
+              Review on Facebook
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10">
+          <div>
+            <h2 className="text-3xl font-bold">Let’s tidy your books</h2>
+            <p className="text-slate-600 mt-2 max-w-xl">
+              Tell us about your business and we’ll propose the right plan within
+              24 hours.
+            </p>
+
+            {/* Contact info */}
+            <div className="mt-6 space-y-3 text-slate-700">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="flex items-center gap-3 hover:underline break-all"
+              >
+                <Mail className="h-5 w-5 text-blue-700" />
+                {CONTACT_EMAIL}
+              </a>
+              <a
+                href={`tel:${CONTACT_PHONE_TEL}`}
+                className="flex items-center gap-3 hover:underline"
+              >
+                <Phone className="h-5 w-5 text-blue-700" />
+                {CONTACT_PHONE_DISPLAY}
+              </a>
+            </div>
+
+            {/* Social */}
+            <div className="mt-6 flex gap-3 text-slate-500">
+              <a
+                href={FACEBOOK_PAGE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="p-2 rounded-full border hover:border-blue-700 hover:text-blue-700 transition"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quote form */}
+          <div className="rounded-2xl border bg-white">
+            <div className="p-6">
+              <div className="text-xl font-semibold">Request a quote</div>
+              <div className="text-slate-600">We’ll reply within one business day.</div>
+            </div>
+            <div className="p-6 pt-0">
+              <form
+                action="https://formspree.io/f/xkgvnnww"
+                method="POST"
+                className="grid grid-cols-1 gap-4"
+              >
+                {/* Identify submission type and redirect */}
+                <input type="hidden" name="submissionType" value="quote" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New inquiry from PPBK website"
+                />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://www.ppbkga.com/thanks"
+                />
+
+                <label className="text-sm font-medium text-slate-700">
+                  Plan (optional)
+                </label>
+                <select
+                  name="plan"
+                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  value={selectedPlan}
+                  onChange={(e) => setSelectedPlan(e.target.value)}
+                >
+                  <option value="">Select a plan…</option>
+                  {plans.map((p) => (
+                    <option key={p.name} value={p.name}>
+                      {p.name}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  name="name"
+                  placeholder="Full name"
+                  required
+                />
+                <input
+                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  name="email"
+                  placeholder="Email"
+                  type="email"
+                  required
+                />
+                <input
+                  className="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  name="company"
+                  placeholder="Company (optional)"
+                />
+                <textarea
+                  className="border rounded-xl p-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  name="message"
+                  placeholder="What do you need help with?"
+                />
+
+                <button type="submit" className={bubble}>
+                  Send <ArrowRight className="h-4 w-4" />
+                </button>
+
+                <p className="text-xs text-slate-500">
+                  By sending this form you agree to our friendly privacy policy.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
