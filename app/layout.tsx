@@ -2,8 +2,10 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+import Navbar from "./components/Navbar";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Poper's Prosperous Bookkeeping",
   description: "Professional bookkeeping services to help small businesses prosper",
   icons: {
@@ -14,16 +16,9 @@ export const metadata = {
   openGraph: {
     title: "Poper's Prosperous Bookkeeping",
     description: "Bookkeeping made simple — so your business can prosper.",
-    url: "https://ppbkga.com", // replace with your live domain
+    url: "https://ppbkga.com", // update if different
     siteName: "Poper's Prosperous Bookkeeping",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "PPBK Gold & Blue Logo",
-      },
-    ],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "PPBK Gold & Blue Logo" }],
     type: "website",
   },
   twitter: {
@@ -38,52 +33,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        {/* 🔹 Navbar */}
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b">
-          <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <div className="relative w-[220px] h-[60px]">
-                <Image
-                  src="/PPBK-h-logo.png"
-                  alt="Poper’s Prosperous Bookkeeping"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </Link>
+        {/* Navbar (now a client component with mobile menu + anchors) */}
+        <Navbar />
 
-            {/* Menu */}
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/about" className="text-blue-900 hover:opacity-80 font-medium tracking-wide">
-                About
-              </Link>
-              <Link href="/services" className="text-blue-900 hover:opacity-80 font-medium tracking-wide">
-                Services
-              </Link>
-              <Link href="/contact" className="text-blue-900 hover:opacity-80 font-medium tracking-wide">
-                Contact
-              </Link>
-
-              {/* Email button */}
-              <a
-                href="mailto:info@ppbkga.com"
-                className="rounded-xl px-4 py-2 font-semibold text-white"
-                style={{ background: "linear-gradient(90deg,#0a2a5e,#0a2a5e)" }}
-              >
-                Email Us
-              </a>
-            </div>
-          </nav>
-        </header>
-
-        {/* 🔹 Page content */}
+        {/* Page content */}
         <main className="flex-grow">{children}</main>
 
-        {/* 🔹 Footer */}
-        <footer className="bg-blue-900 text-white px-6 py-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
+        {/* Footer (adds Privacy / Terms / Legal back) */}
+        <footer className="bg-blue-900 text-white px-6 py-8 mt-12">
+          <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="relative w-[200px] h-[55px]">
               <Image
                 src="/PPBK-h-logo.png"
@@ -92,16 +50,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 className="object-contain"
               />
             </div>
-            <div className="text-center md:text-right mt-4 md:mt-0">
-              <p>Poper’s Prosperous Bookkeeping</p>
-              <p>
+
+            <div className="text-center md:text-right">
+              <p className="mb-1">Poper’s Prosperous Bookkeeping</p>
+              <p className="mb-1">
                 Email:{" "}
                 <a href="mailto:info@ppbkga.com" className="underline">
                   info@ppbkga.com
                 </a>
               </p>
-              <p>© {new Date().getFullYear()} All Rights Reserved</p>
+              <p className="opacity-90">© {new Date().getFullYear()} All Rights Reserved</p>
             </div>
+          </div>
+
+          <div className="mx-auto max-w-7xl mt-6 flex flex-wrap items-center justify-center gap-6 text-sm opacity-95">
+            <Link className="hover:underline" href="/privacy">Privacy</Link>
+            <Link className="hover:underline" href="/terms">Terms</Link>
+            <Link className="hover:underline" href="/legal">Legal</Link>
+            <Link className="hover:underline" href="/#contact">Contact</Link>
           </div>
         </footer>
       </body>
