@@ -1,13 +1,14 @@
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 export const metadata = {
   title: "Poper's Prosperous Bookkeeping",
   description: "Professional bookkeeping services to help small businesses prosper",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
