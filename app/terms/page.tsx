@@ -48,7 +48,7 @@ export default function TermsPage() {
         <p>
           For questions, contact{" "}
           <a href="mailto:info@ppbkga.com" className="text-blue-700 underline">
-            popersprosperousbk@gmail.com
+            info@ppbkga.com
           </a>{" "}
           or{" "}
           <a href="tel:+16786777210" className="text-blue-700 underline">
