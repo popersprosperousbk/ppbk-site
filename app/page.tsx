@@ -82,7 +82,7 @@ type Plan = {
 const plans: Plan[] = [
   {
     name: "Starter",
-    price: "$From 399/mo",
+    price: "From $399/mo",
     tagline: "Solo founders & side hustles",
     bullets: [
       "Up to 75 txns/mo",
