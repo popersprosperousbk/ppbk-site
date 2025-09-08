@@ -26,13 +26,13 @@ const CONTACT_PHONE_DISPLAY = "(678) 677-7210";
 const CONTACT_PHONE_TEL = "+16786777210"; // tel: link format
 
 // ---- Social links ----
-const FACEBOOK_PAGE_URL = "https://www.facebook.com/<your-page-handle>"; // ← replace with real FB URL
+const FACEBOOK_PAGE_URL = "https://www.facebook.com/profile.php?id=61580513487167"; // ← replace with real FB URL
 const LINKEDIN_URL = "https://www.linkedin.com/"; // optional: replace with your LinkedIn
 
 // ---- Public review links (optional placeholders) ----
 const GOOGLE_REVIEW_URL =
   "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID";
-const FACEBOOK_REVIEW_URL = "https://www.facebook.com/YOUR_PAGE/reviews";
+const FACEBOOK_REVIEW_URL = "https://www.facebook.com/profile.php?id=61580513487167&sk=reviews";
 
 // Reusable royal-blue bubble class
 const bubble =
@@ -82,7 +82,7 @@ type Plan = {
 const plans: Plan[] = [
   {
     name: "Starter",
-    price: "$399/mo",
+    price: "$From 399/mo",
     tagline: "Solo founders & side hustles",
     bullets: [
       "Up to 75 txns/mo",
@@ -93,7 +93,7 @@ const plans: Plan[] = [
   },
   {
     name: "Growth",
-    price: "$799/mo",
+    price: "From $799/mo",
     tagline: "Growing teams & multi-accounts",
     bullets: [
       "Up to 300 txns/mo",
