@@ -31,8 +31,8 @@ export default function LegalPage() {
         <h2 className="text-xl font-semibold">Contact</h2>
         <p>
           For legal inquiries, email{" "}
-          <a href="mailto:popersprosperousbk@gmail.com" className="text-blue-700 underline">
-            popersprosperousbk@gmail.com
+          <a href="mailto:info@ppbkga.com" className="text-blue-700 underline">
+            info@ppbkga.com
           </a>{" "}
           or call{" "}
           <a href="tel:+16786777210" className="text-blue-700 underline">
