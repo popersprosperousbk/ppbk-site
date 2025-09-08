@@ -47,7 +47,7 @@ export default function TermsPage() {
         <h2 className="text-xl font-semibold">7. Contact</h2>
         <p>
           For questions, contact{" "}
-          <a href="mailto:popersprosperousbk@gmail.com" className="text-blue-700 underline">
+          <a href="mailto:info@ppbkga.com" className="text-blue-700 underline">
             popersprosperousbk@gmail.com
           </a>{" "}
           or{" "}
