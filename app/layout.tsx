@@ -6,6 +6,32 @@ import type { ReactNode } from "react";
 export const metadata = {
   title: "Poper's Prosperous Bookkeeping",
   description: "Professional bookkeeping services to help small businesses prosper",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
+  },
+  openGraph: {
+    title: "Poper's Prosperous Bookkeeping",
+    description: "Bookkeeping made simple — so your business can prosper.",
+    url: "https://ppbkga.com", // replace with your live domain
+    siteName: "Poper's Prosperous Bookkeeping",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "PPBK Gold & Blue Logo",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Poper's Prosperous Bookkeeping",
+    description: "Professional bookkeeping services to help small businesses prosper",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -14,16 +40,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-screen flex flex-col">
         {/* 🔹 Navbar */}
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b">
-          <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/PPBK-h-logo.png"
-                alt="Poper’s Prosperous Bookkeeping"
-                width={210}
-                height={56}
-                priority
-              />
+            <Link href="/" className="flex items-center">
+              <div className="relative w-[220px] h-[60px]">
+                <Image
+                  src="/PPBK-h-logo.png"
+                  alt="Poper’s Prosperous Bookkeeping"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </Link>
 
             {/* Menu */}
@@ -56,12 +84,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* 🔹 Footer */}
         <footer className="bg-blue-900 text-white px-6 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            <Image
-              src="/PPBK-h-logo.png"
-              alt="Poper's Prosperous Bookkeeping"
-              width={200}
-              height={55}
-            />
+            <div className="relative w-[200px] h-[55px]">
+              <Image
+                src="/PPBK-h-logo.png"
+                alt="Poper's Prosperous Bookkeeping"
+                fill
+                className="object-contain"
+              />
+            </div>
             <div className="text-center md:text-right mt-4 md:mt-0">
               <p>Poper’s Prosperous Bookkeeping</p>
               <p>
