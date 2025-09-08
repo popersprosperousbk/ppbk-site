@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global CSS variables */
 :root {
   --radius: 1rem;
+  /* Offset so in-page links (/#services, etc.) don't hide under the sticky navbar */
+  --nav-offset: 6.5rem; /* h-20 header + a little breathing room */
 }
 
+/* Smooth scrolling + global offset for ALL hash links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-offset);
+}
+
+/* Base body styles */
 body {
   @apply bg-white text-slate-900;
 }
